@@ -1,10 +1,12 @@
 package com.allerria.moneytracker.ui.main
 
 import com.allerria.moneytracker.model.BalanceManager
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 
-class MainPresenter(val view: MainView) {
+@InjectViewState
+class MainPresenter(private val balanceManager: BalanceManager): MvpPresenter<MainView>() {
     fun showBalance() {
-        BalanceManager.balance.money += 1.0
-        view.showBalance(BalanceManager.getBalanceInRubles(), BalanceManager.getBalanceInDollars())
+        viewState.showBalance(balanceManager.getBalanceInRUB(), balanceManager.getBalanceInUSD())
     }
 }

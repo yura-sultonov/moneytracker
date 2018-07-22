@@ -1,5 +1,6 @@
 package com.allerria.moneytracker.ui.settings
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -10,15 +11,27 @@ import android.util.Log
 import android.view.MenuItem
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.ui.about.AboutActivity
+import com.allerria.moneytracker.ui.global.BaseActivity
 import com.allerria.moneytracker.ui.main.MainActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_settings.*
+import javax.inject.Inject
 
 
-class SettingsActivity : AppCompatActivity(), SettingsView, NavigationView.OnNavigationItemSelectedListener {
+class SettingsActivity : BaseActivity(), SettingsView, NavigationView.OnNavigationItemSelectedListener {
 
-    private val presenter = SettingsPresenter(this)
+    @Inject
+    lateinit var app : Context
+
+    @InjectPresenter
+    lateinit var presenter: SettingsPresenter
+
+    @ProvidePresenter
+    fun providePresenter(): SettingsPresenter = SettingsPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_settings)

@@ -1,5 +1,6 @@
 package com.allerria.moneytracker.ui.about
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -9,14 +10,25 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
 import com.allerria.moneytracker.R
+import com.allerria.moneytracker.ui.global.BaseActivity
 import com.allerria.moneytracker.ui.main.MainActivity
 import com.allerria.moneytracker.ui.settings.SettingsActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_about.*
+import javax.inject.Inject
 
 
-class AboutActivity : AppCompatActivity(), AboutView, NavigationView.OnNavigationItemSelectedListener {
+class AboutActivity : BaseActivity(), AboutView, NavigationView.OnNavigationItemSelectedListener {
 
-    private val presenter = AboutPresenter(this)
+    @Inject
+    lateinit var app: Context
+
+    @InjectPresenter
+    lateinit var presenter: AboutPresenter
+
+    @ProvidePresenter
+    fun providePresenter(): AboutPresenter = AboutPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
