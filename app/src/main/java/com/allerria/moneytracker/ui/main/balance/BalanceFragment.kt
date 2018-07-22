@@ -2,16 +2,12 @@ package com.allerria.moneytracker.ui.main.balance
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
-import com.allerria.moneytracker.di.AppComponent
-import com.allerria.moneytracker.di.AppModule
-import com.allerria.moneytracker.model.BalanceManager
+import com.allerria.moneytracker.entity.Money
+import com.allerria.moneytracker.model.FinanceManager
 import com.allerria.moneytracker.ui.global.BaseFragment
-import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_balance.*
@@ -26,13 +22,13 @@ class BalanceFragment : BaseFragment(), BalanceView {
     lateinit var app : Context
 
     @Inject
-    lateinit var balanceManager: BalanceManager
+    lateinit var financeManager: FinanceManager
 
     @InjectPresenter
     lateinit var presenter: BalancePresenter
 
     @ProvidePresenter
-    fun providePresenter(): BalancePresenter = BalancePresenter(balanceManager)
+    fun providePresenter(): BalancePresenter = BalancePresenter(financeManager)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -44,8 +40,8 @@ class BalanceFragment : BaseFragment(), BalanceView {
         presenter.showBalance()
     }
 
-    override fun showBalance(rubles: Double, dollars: Double) {
-        rubles_text_view.text = "$rubles P"
-        dollars_text_view.text = "$dollars $"
+    override fun showBalance(balanceInRates: List<Money>) {
+        rubles_text_view.text = "${balanceInRates.find { it.currency == "RUB" }?.value} P"
+        dollars_text_view.text = "${balanceInRates.find { it.currency == "USD" }?.value} $"
     }
 }

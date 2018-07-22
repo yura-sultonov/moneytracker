@@ -1,17 +1,12 @@
 package com.allerria.moneytracker.ui.main
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.util.Log
 import android.view.MenuItem
-import android.view.ViewGroup
 import com.allerria.moneytracker.R
-import com.allerria.moneytracker.model.BalanceManager
 import com.allerria.moneytracker.ui.global.BaseActivity
 import com.allerria.moneytracker.ui.global.BaseFragment
 import com.allerria.moneytracker.ui.main.about.AboutFragment
