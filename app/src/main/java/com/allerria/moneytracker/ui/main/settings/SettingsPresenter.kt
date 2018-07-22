@@ -1,7 +1,7 @@
-package com.allerria.moneytracker.ui.about
+package com.allerria.moneytracker.ui.main.settings
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 
 @InjectViewState
-class AboutPresenter(): MvpPresenter<AboutView>()
+class SettingsPresenter: MvpPresenter<SettingsView>()

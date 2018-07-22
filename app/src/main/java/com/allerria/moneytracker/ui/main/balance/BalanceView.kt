@@ -1,8 +1,10 @@
-package com.allerria.moneytracker.ui.settings
+package com.allerria.moneytracker.ui.main.balance
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface SettingsView: MvpView
+interface BalanceView: MvpView {
+    fun showBalance(rubles: Double, dollars: Double)
+}

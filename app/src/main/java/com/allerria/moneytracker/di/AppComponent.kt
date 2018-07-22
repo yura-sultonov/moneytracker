@@ -1,7 +1,9 @@
 package com.allerria.moneytracker.di
 
 import com.allerria.moneytracker.MoneyTrackerApp
-import com.allerria.moneytracker.ui.settings.SettingsActivity
+import com.allerria.moneytracker.ui.main.about.AboutFragment
+import com.allerria.moneytracker.ui.main.balance.BalanceFragment
+import com.allerria.moneytracker.ui.main.settings.SettingsFragment
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -20,4 +22,8 @@ interface AppComponent {
     }
 
     fun inject(app: MoneyTrackerApp)
+    fun inject(balanceFragment: BalanceFragment)
+    fun inject(settingsFragment: SettingsFragment)
+    fun inject(aboutFragment: AboutFragment)
+
 }

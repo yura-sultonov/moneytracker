@@ -19,13 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.settings.SettingsActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.about.AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
