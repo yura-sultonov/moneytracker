@@ -1,7 +1,7 @@
 package com.allerria.moneytracker.ui.main.balance
 
 import com.allerria.moneytracker.entity.Money
-import com.allerria.moneytracker.entity.Transaction
+import com.allerria.moneytracker.entity.Record
 import com.allerria.moneytracker.model.FinanceManager
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
@@ -13,6 +13,6 @@ class BalancePresenter(private val financeManager: FinanceManager): MvpPresenter
         viewState.showBalance(financeManager.getBalance())
     }
     fun makeTransaction() {
-        financeManager.executeTransaction(Transaction(Date(), Money("USD", 2.00)))
+        financeManager.executeTransaction(Record(Date(), Money("USD", 2.00)))
     }
 }
