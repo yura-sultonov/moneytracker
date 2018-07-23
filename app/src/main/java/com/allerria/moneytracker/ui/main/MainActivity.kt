@@ -81,16 +81,20 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                             } else {
                                 super.onBackPressed()
                             }
-                        }                    }
+                        }
+                    }
                     "ABOUT_FRAGMENT" -> {
                         toolbar.setTitle(R.string.about)
                         nav_view.menu.getItem(2).isChecked = true
                         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-                            drawer_layout.closeDrawer(GravityCompat.START)
-                        } else {
-                            super.onBackPressed()
-                        }                    }
+                        toolbar.setNavigationOnClickListener {
+                            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                                drawer_layout.closeDrawer(GravityCompat.START)
+                            } else {
+                                super.onBackPressed()
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -123,11 +127,13 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                 fragment = SettingsFragment()
             }
         }
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_frame, fragment)
-                .addToBackStack(fragment.TAG)
-                .commit()
+        if ((supportFragmentManager.fragments.first() as BaseFragment).TAG != fragment.TAG) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_frame, fragment)
+                    .addToBackStack(fragment.TAG)
+                    .commit()
+        }
     }
 
 }
