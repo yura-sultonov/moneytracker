@@ -1,4 +1,4 @@
-package com.allerria.template
+package com.allerria.moneytracker
 
 import org.junit.Test
 

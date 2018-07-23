@@ -1,4 +1,4 @@
-package com.allerria.template
+package com.allerria.moneytracker
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
