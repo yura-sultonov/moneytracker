@@ -62,7 +62,13 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                         if (supportFragmentManager.backStackEntryCount <= 1) {
                             supportActionBar?.setDisplayHomeAsUpEnabled(false)
                             toggle.syncState()
-                            toolbar.setNavigationOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
+                            toolbar.setNavigationOnClickListener {
+                                if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                                    drawer_layout.closeDrawer(GravityCompat.START)
+                                } else {
+                                    drawer_layout.openDrawer(GravityCompat.START)
+                                }
+                            }
                         }
                     }
                     "SETTINGS_FRAGMENT" -> {
