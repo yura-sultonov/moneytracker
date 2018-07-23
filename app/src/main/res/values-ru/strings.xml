@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Money Tracker</string>
+    <string name="author_name">\@Allerria</string>
+    <string name="navigation_drawer_open">Navigation drawer open</string>
+    <string name="navigation_drawer_close">Navigation drawer close</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="balance">Баланс</string>
+    <string name="settings">Настройки</string>
+    <string name="about">О приложении</string>
+    <string name="wipe_data">Очистить все данные</string>
+    <string name="data_deletion">Удаление данных</string>
+    <string name="are_you_sure_to_delete">Вы точно хотите удалить все данные?</string>
+</resources>

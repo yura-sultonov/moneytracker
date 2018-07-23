@@ -41,7 +41,7 @@ class BalanceFragment : BaseFragment(), BalanceView {
     }
 
     override fun showBalance(balanceInRates: List<Money>) {
-        rubles_text_view.text = "${balanceInRates.find { it.currency == "RUB" }?.value} \u20BD"
-        dollars_text_view.text = "${balanceInRates.find { it.currency == "USD" }?.value} $"
+        rub_text_view.text = "${balanceInRates.find { it.currency == "RUB" }?.value} \u20BD"
+        usd_text_view.text = "${balanceInRates.find { it.currency == "USD" }?.value} $"
     }
 }
