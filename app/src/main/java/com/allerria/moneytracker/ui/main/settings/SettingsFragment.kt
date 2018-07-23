@@ -45,8 +45,8 @@ class SettingsFragment : BaseFragment(), SettingsView {
         dialogBuilder = AlertDialog.Builder(this@SettingsFragment.activity)
         dialogBuilder.setTitle(R.string.data_deletion)
                 .setMessage(R.string.are_you_sure_to_delete)
-                .setPositiveButton(android.R.string.yes, DialogInterface.OnClickListener { dialogInterface, i -> presenter.wipeData() })
-                .setNegativeButton(android.R.string.no, DialogInterface.OnClickListener { dialogInterface, i -> })
+                .setPositiveButton(android.R.string.yes, DialogInterface.OnClickListener { _, _ -> presenter.wipeData() })
+                .setNegativeButton(android.R.string.no, DialogInterface.OnClickListener { _, _ -> })
         wipe_data_text_view.setOnClickListener {
             dialogBuilder.show()
         }

@@ -38,11 +38,10 @@ class BalanceFragment : BaseFragment(), BalanceView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.showBalance()
-        presenter.makeTransaction()
     }
 
     override fun showBalance(balanceInRates: List<Money>) {
-        rubles_text_view.text = "${balanceInRates.find { it.currency == "RUB" }?.value} P"
+        rubles_text_view.text = "${balanceInRates.find { it.currency == "RUB" }?.value} \u20BD"
         dollars_text_view.text = "${balanceInRates.find { it.currency == "USD" }?.value} $"
     }
 }

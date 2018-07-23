@@ -24,10 +24,11 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="end">
 
-        <include
-            layout="@layout/content_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <FrameLayout
+            android:id="@+id/main_frame"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+        </FrameLayout>
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"

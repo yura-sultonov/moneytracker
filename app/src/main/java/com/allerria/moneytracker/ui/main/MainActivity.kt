@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.util.Log
 import android.view.MenuItem
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.ui.global.BaseActivity
@@ -16,6 +17,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+
 
 class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,12 +33,15 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.main_frame, BalanceFragment())
                     .commit()
         }
+
+        setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -46,20 +51,31 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
         nav_view.setNavigationItemSelectedListener(this)
         nav_view.menu.getItem(0).isChecked = true
         toolbar.setTitle(R.string.balance)
+
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.fragments.size > 0) {
                 when ((supportFragmentManager.fragments.last() as BaseFragment).TAG) {
                     "BALANCE_FRAGMENT" -> {
+
                         toolbar.setTitle(R.string.balance)
                         nav_view.menu.getItem(0).isChecked = true
+                        if (supportFragmentManager.backStackEntryCount <= 1) {
+                            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                            toggle.syncState()
+                            toolbar.setNavigationOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
+                        }
                     }
                     "SETTINGS_FRAGMENT" -> {
                         toolbar.setTitle(R.string.settings)
                         nav_view.menu.getItem(1).isChecked = true
+                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                        toolbar.setNavigationOnClickListener { super.onBackPressed() }
                     }
                     "ABOUT_FRAGMENT" -> {
                         toolbar.setTitle(R.string.about)
                         nav_view.menu.getItem(2).isChecked = true
+                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                        toolbar.setNavigationOnClickListener { super.onBackPressed() }
                     }
                 }
             }
@@ -80,9 +96,9 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
         return true
     }
 
-    override fun changeFragment(navigationItemId: Int) {
+    override fun changeFragment(Id: Int) {
         lateinit var fragment: BaseFragment
-        when (navigationItemId) {
+        when (Id) {
             R.id.nav_about -> {
                 fragment = AboutFragment()
             }
