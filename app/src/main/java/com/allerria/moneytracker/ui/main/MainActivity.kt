@@ -75,14 +75,22 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                         toolbar.setTitle(R.string.settings)
                         nav_view.menu.getItem(1).isChecked = true
                         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                        toolbar.setNavigationOnClickListener { super.onBackPressed() }
-                    }
+                        toolbar.setNavigationOnClickListener {
+                            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                                drawer_layout.closeDrawer(GravityCompat.START)
+                            } else {
+                                super.onBackPressed()
+                            }
+                        }                    }
                     "ABOUT_FRAGMENT" -> {
                         toolbar.setTitle(R.string.about)
                         nav_view.menu.getItem(2).isChecked = true
                         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                        toolbar.setNavigationOnClickListener { super.onBackPressed() }
-                    }
+                        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                            drawer_layout.closeDrawer(GravityCompat.START)
+                        } else {
+                            super.onBackPressed()
+                        }                    }
                 }
             }
         }
