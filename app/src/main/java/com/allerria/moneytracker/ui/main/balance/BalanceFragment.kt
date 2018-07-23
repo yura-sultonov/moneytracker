@@ -38,6 +38,7 @@ class BalanceFragment : BaseFragment(), BalanceView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.showBalance()
+        presenter.makeTransaction()
     }
 
     override fun showBalance(balanceInRates: List<Money>) {

@@ -5,7 +5,7 @@ import com.allerria.moneytracker.entity.Money
 
 class MoneyConverter(private val currencyRateManager: CurrencyRateManager) {
     fun convert(money: Money): List<Money> {
-        return currencyRateManager.currenciesRate.map { Money(it.currency, convert(money, "USD").value / it.value) }
+        return currencyRateManager.currenciesRate.map { Money(it.currency, convert(money, it.currency).value) }
     }
     fun convert(money: Money, currency: String): Money = Money(currency, money.value / (getCurrencyRate("USD").value / getCurrencyRate(currency).value))
 

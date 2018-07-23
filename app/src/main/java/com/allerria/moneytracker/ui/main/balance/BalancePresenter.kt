@@ -13,6 +13,7 @@ class BalancePresenter(private val financeManager: FinanceManager): MvpPresenter
         viewState.showBalance(financeManager.getBalance())
     }
     fun makeTransaction() {
-        financeManager.executeTransaction(Record(Date(), Money("USD", 2.00)))
+        financeManager.executeTransaction(Record("income", Money("RUB", 30.0)))
+        financeManager.executeTransaction(Record("consumption", Money("USD", 5.00)))
     }
 }

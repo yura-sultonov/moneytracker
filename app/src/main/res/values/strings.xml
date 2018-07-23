@@ -6,4 +6,7 @@
     <string name="balance">Баланс</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
+    <string name="wipe_data">Очистить все данные</string>
+    <string name="data_deletion">Удаление данных</string>
+    <string name="are_you_sure_to_delete">Вы точно хотите удалить все данные?</string>
 </resources>
