@@ -1,4 +1,4 @@
-package com.allerria.moneytracker.ui.global
+package com.allerria.moneytracker.ui.common
 
 import android.os.Bundle
 import android.view.LayoutInflater
