@@ -8,8 +8,8 @@ import android.view.View
 import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.model.FinanceManager
-import com.allerria.moneytracker.ui.global.BaseFragment
-import com.arellomobile.mvp.MvpAppCompatFragment
+import com.allerria.moneytracker.ui.common.BaseFragment
+import com.allerria.moneytracker.ui.main.MainActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -19,13 +19,10 @@ import javax.inject.Inject
 class SettingsFragment : BaseFragment(), SettingsView {
 
     override val layoutRes = R.layout.fragment_settings
-    override val TAG = "SETTINGS_FRAGMENT"
+    override val TAG = MainActivity.SETTINGS_FRAGMENT
 
     @Inject
     lateinit var app: Context
-
-    @Inject
-    lateinit var financeManager: FinanceManager
 
     @InjectPresenter
     lateinit var presenter: SettingsPresenter
@@ -33,7 +30,7 @@ class SettingsFragment : BaseFragment(), SettingsView {
     private lateinit var dialogBuilder: AlertDialog.Builder
 
     @ProvidePresenter
-    fun providePresenter(): SettingsPresenter = SettingsPresenter(financeManager)
+    fun providePresenter(): SettingsPresenter = SettingsPresenter()
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
