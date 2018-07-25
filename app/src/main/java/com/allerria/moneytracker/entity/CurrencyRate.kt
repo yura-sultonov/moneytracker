@@ -1,3 +1,3 @@
 package com.allerria.moneytracker.entity
 
-data class CurrencyRate(val currency: String, val value: Double)
+data class CurrencyRate(val currency: Currency, val value: Double)

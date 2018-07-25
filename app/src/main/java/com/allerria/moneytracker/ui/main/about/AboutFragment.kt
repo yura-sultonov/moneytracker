@@ -1,11 +1,10 @@
 package com.allerria.moneytracker.ui.main.about
 
 import android.content.Context
-import android.os.Bundle
 import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
-import com.allerria.moneytracker.ui.global.BaseFragment
-import com.arellomobile.mvp.MvpAppCompatFragment
+import com.allerria.moneytracker.ui.common.BaseFragment
+import com.allerria.moneytracker.ui.main.MainActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import javax.inject.Inject
@@ -13,7 +12,7 @@ import javax.inject.Inject
 
 class AboutFragment : BaseFragment(), AboutView {
     override val layoutRes = R.layout.fragment_about
-    override val TAG = "ABOUT_FRAGMENT"
+    override val TAG = MainActivity.ABOUT_FRAGMENT
 
     @Inject
     lateinit var app: Context

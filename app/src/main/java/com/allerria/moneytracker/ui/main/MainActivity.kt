@@ -4,22 +4,29 @@ import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.util.Log
 import android.view.MenuItem
 import com.allerria.moneytracker.R
-import com.allerria.moneytracker.ui.global.BaseActivity
-import com.allerria.moneytracker.ui.global.BaseFragment
+import com.allerria.moneytracker.ui.common.BaseActivity
+import com.allerria.moneytracker.ui.common.BaseFragment
 import com.allerria.moneytracker.ui.main.about.AboutFragment
 import com.allerria.moneytracker.ui.main.balance.BalanceFragment
 import com.allerria.moneytracker.ui.main.settings.SettingsFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import javax.inject.Inject
 
 
 class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSelectedListener {
+
+    companion object {
+        const val BALANCE_FRAGMENT = "BALANCE_FRAGMENT"
+        const val ABOUT_FRAGMENT = "ABOUT_FRAGMENT"
+        const val SETTINGS_FRAGMENT = "SETTINGS_FRAGMENT"
+    }
 
     @Inject
     lateinit var app: Context
@@ -30,61 +37,32 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     @ProvidePresenter
     fun providePresenter(): MainPresenter = MainPresenter()
 
+    private lateinit var toggle: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
                     .add(R.id.main_frame, BalanceFragment())
-                    .commit()
+                    .commitNow()
         }
 
         setSupportActionBar(toolbar)
-
-        val toggle = ActionBarDrawerToggle(
+        nav_view.setNavigationItemSelectedListener(this)
+        toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
+        toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        nav_view.setNavigationItemSelectedListener(this)
-        nav_view.menu.getItem(0).isChecked = true
-        toolbar.setTitle(R.string.balance)
+
+        onFragmentChanged((supportFragmentManager.fragments.first() as BaseFragment).TAG)
 
         supportFragmentManager.addOnBackStackChangedListener {
-            if (supportFragmentManager.fragments.size > 0) {
-                when ((supportFragmentManager.fragments.last() as BaseFragment).TAG) {
-                    "BALANCE_FRAGMENT" -> {
-
-                        toolbar.setTitle(R.string.balance)
-                        nav_view.menu.getItem(0).isChecked = true
-                        if (supportFragmentManager.backStackEntryCount <= 1) {
-                            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                            toggle.syncState()
-                            toolbar.setNavigationOnClickListener {
-                                if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-                                    drawer_layout.closeDrawer(GravityCompat.START)
-                                } else {
-                                    drawer_layout.openDrawer(GravityCompat.START)
-                                }
-                            }
-                        }
-                    }
-                    "SETTINGS_FRAGMENT" -> {
-                        toolbar.setTitle(R.string.settings)
-                        nav_view.menu.getItem(1).isChecked = true
-                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                        toolbar.setNavigationOnClickListener { super.onBackPressed() }
-                    }
-                    "ABOUT_FRAGMENT" -> {
-                        toolbar.setTitle(R.string.about)
-                        nav_view.menu.getItem(2).isChecked = true
-                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                        toolbar.setNavigationOnClickListener { super.onBackPressed() }
-                    }
-                }
-            }
+            onFragmentChanged((supportFragmentManager.fragments.first() as BaseFragment).TAG)
         }
     }
 
@@ -92,7 +70,11 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            if ((supportFragmentManager.fragments.last() as BaseFragment).TAG == BALANCE_FRAGMENT) {
+                drawer_layout.openDrawer(GravityCompat.START)
+            } else {
+                super.onBackPressed()
+            }
         }
     }
 
@@ -115,11 +97,35 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                 fragment = SettingsFragment()
             }
         }
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_frame, fragment)
-                .addToBackStack(fragment.TAG)
-                .commit()
+        if ((supportFragmentManager.fragments.first() as BaseFragment).TAG != fragment.TAG) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_frame, fragment)
+                    .addToBackStack(fragment.TAG)
+                    .commit()
+        }
+    }
+
+    private fun onFragmentChanged(TAG: String) {
+        when (TAG) {
+            BALANCE_FRAGMENT -> {
+                supportActionBar?.setTitle(R.string.balance)
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                toggle.syncState()
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                nav_view.menu.getItem(0).isChecked = true
+            }
+            SETTINGS_FRAGMENT -> {
+                supportActionBar?.setTitle(R.string.settings)
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+            ABOUT_FRAGMENT -> {
+                supportActionBar?.setTitle(R.string.about)
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+        }
     }
 
 }
