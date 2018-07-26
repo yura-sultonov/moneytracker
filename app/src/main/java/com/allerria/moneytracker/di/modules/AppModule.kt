@@ -1,9 +1,9 @@
 package com.allerria.moneytracker.di.modules
 
 import android.content.Context
-import com.allerria.moneytracker.MoneyTrackerApp
-import com.allerria.moneytracker.model.FinanceManager
-import com.allerria.moneytracker.model.MoneyConverter
+import com.allerria.moneytracker.model.interactor.FinanceManagerInteractor
+import com.allerria.moneytracker.model.interactor.MoneyConverterInteractor
+import com.allerria.moneytracker.model.data.repository.WalletRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,8 +13,4 @@ class AppModule(private val context: Context) {
     @Provides
     @Singleton
     fun provideContext(): Context = context
-
-    @Provides
-    @Singleton
-    fun provideFinanceManager(moneyConverter: MoneyConverter): FinanceManager = FinanceManager(moneyConverter)
 }

@@ -39,7 +39,7 @@ class MoneyTrackerApp : Application() {
     private fun buildComponent(): AppComponent {
         return DaggerAppComponent.builder()
                 .appModule(AppModule(this))
-                .apiModule(ApiModule("url"))
+                .apiModule(ApiModule("https://openexchangerates.org/"))
                 .financeModule(FinanceModule())
                 .build()
     }

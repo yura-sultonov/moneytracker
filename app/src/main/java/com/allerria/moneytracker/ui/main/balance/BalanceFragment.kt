@@ -8,7 +8,7 @@ import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.entity.Currency
 import com.allerria.moneytracker.entity.Money
-import com.allerria.moneytracker.model.FinanceManager
+import com.allerria.moneytracker.model.interactor.FinanceManagerInteractor
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -24,13 +24,13 @@ class BalanceFragment : BaseFragment(), BalanceView {
     lateinit var app: Context
 
     @Inject
-    lateinit var financeManager: FinanceManager
+    lateinit var financeManagerInteractor: FinanceManagerInteractor
 
     @InjectPresenter
     lateinit var presenter: BalancePresenter
 
     @ProvidePresenter
-    fun providePresenter(): BalancePresenter = BalancePresenter(financeManager)
+    fun providePresenter(): BalancePresenter = BalancePresenter(financeManagerInteractor)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -39,6 +39,7 @@ class BalanceFragment : BaseFragment(), BalanceView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        usd_text_view.setOnClickListener { presenter.updateCurrenciesRate() }
         presenter.showBalance()
     }
 
