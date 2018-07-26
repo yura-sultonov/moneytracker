@@ -1,5 +1,6 @@
 package com.allerria.moneytracker.ui.main.balance
 
+import android.content.Context
 import com.allerria.moneytracker.entity.Currency
 import com.allerria.moneytracker.entity.Money
 import com.allerria.moneytracker.entity.Record
@@ -10,11 +11,7 @@ import com.arellomobile.mvp.MvpPresenter
 import javax.inject.Inject
 
 @InjectViewState
-class BalancePresenter: MvpPresenter<BalanceView>() {
-
-    @Inject
-    private
-    lateinit var financeManager: FinanceManager
+class BalancePresenter(private val financeManager: FinanceManager): MvpPresenter<BalanceView>() {
 
     fun showBalance() {
         viewState.showBalance(financeManager.getBalance())

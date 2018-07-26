@@ -28,7 +28,10 @@ android {
 }
 
 def moxy = '1.5.5'
-def dagger = '2.11'
+def dagger = '2.13'
+def cicerone = '3.0.0'
+def timber = '4.7.1'
+def retrofit = '2.4.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -51,4 +54,10 @@ dependencies {
     implementation "com.arello-mobile:moxy-android:$moxy"
     implementation "com.arello-mobile:moxy-app-compat:$moxy"
     kapt "com.arello-mobile:moxy-compiler:$moxy"
+
+    implementation "ru.terrakok.cicerone:cicerone:$cicerone"
+
+    implementation "com.jakewharton.timber:timber:$timber"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
 }

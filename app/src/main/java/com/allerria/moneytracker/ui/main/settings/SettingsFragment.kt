@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
+import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.model.FinanceManager
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.allerria.moneytracker.ui.main.MainActivity
@@ -19,7 +20,7 @@ import javax.inject.Inject
 class SettingsFragment : BaseFragment(), SettingsView {
 
     override val layoutRes = R.layout.fragment_settings
-    override val TAG = MainActivity.SETTINGS_FRAGMENT
+    override val TAG = Screens.SETTINGS_SCREEN
 
     @Inject
     lateinit var app: Context
@@ -27,10 +28,12 @@ class SettingsFragment : BaseFragment(), SettingsView {
     @InjectPresenter
     lateinit var presenter: SettingsPresenter
 
+    @Inject lateinit var financeManager: FinanceManager
+
     private lateinit var dialogBuilder: AlertDialog.Builder
 
     @ProvidePresenter
-    fun providePresenter(): SettingsPresenter = SettingsPresenter()
+    fun providePresenter(): SettingsPresenter = SettingsPresenter(financeManager)
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

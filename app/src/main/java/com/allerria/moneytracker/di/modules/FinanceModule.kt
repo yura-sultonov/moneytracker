@@ -1,4 +1,4 @@
-package com.allerria.moneytracker.di
+package com.allerria.moneytracker.di.modules
 
 import com.allerria.moneytracker.model.CurrencyRateManager
 import com.allerria.moneytracker.model.MoneyConverter

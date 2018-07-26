@@ -6,11 +6,7 @@ import com.arellomobile.mvp.MvpPresenter
 import javax.inject.Inject
 
 @InjectViewState
-class SettingsPresenter: MvpPresenter<SettingsView>() {
-    @Inject
-    private
-    lateinit var financeManager: FinanceManager
-
+class SettingsPresenter(private val financeManager: FinanceManager): MvpPresenter<SettingsView>() {
     fun wipeData() {
         financeManager.balance.value = 0.0
     }
