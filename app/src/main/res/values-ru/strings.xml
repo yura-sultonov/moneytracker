@@ -10,4 +10,6 @@
     <string name="wipe_data">Очистить все данные</string>
     <string name="data_deletion">Удаление данных</string>
     <string name="are_you_sure_to_delete">Вы точно хотите удалить все данные?</string>
+    <string name="cash">Наличные</string>
+    <string name="card">Кредитная карта</string>
 </resources>

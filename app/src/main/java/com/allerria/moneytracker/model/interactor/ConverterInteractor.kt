@@ -9,11 +9,11 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-class MoneyConverterInteractor @Inject constructor(private val currencyRateRepository: CurrencyRateRepository) {
+class ConverterInteractor @Inject constructor(private val currencyRateRepository: CurrencyRateRepository) {
     fun convert(money: Money): List<Money> {
         return currencyRateRepository.getCurrenciesRateFromCache().map { Money(it.currency, convert(money, it.currency).value) }
     }
-    fun convert(money: Money, currency: Currency): Money = Money(currency, money.value / (getCurrencyRate(money.currency).value / getCurrencyRate(currency).value))
+    fun convert(money: Money, currency: Currency): Money = Money(currency, money.value * (getCurrencyRate(currency).value / getCurrencyRate(money.currency).value))
 
     fun updateCurrencyRateCache() {
         Timber.d("start updating")

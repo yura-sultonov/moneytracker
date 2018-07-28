@@ -10,4 +10,6 @@
     <string name="wipe_data">Wipe all data</string>
     <string name="data_deletion">Wipe data</string>
     <string name="are_you_sure_to_delete">Are you sure?</string>
+    <string name="cash">Cash</string>
+    <string name="card">Card</string>
 </resources>

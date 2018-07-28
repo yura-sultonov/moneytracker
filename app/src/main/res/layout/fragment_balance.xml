@@ -1,53 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/balance_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:orientation="vertical">
 
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/balance_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/balance_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/balance"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_below="@id/balance_view_pager"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:padding="10dp">
 
-        <TextView
-            android:id="@+id/rub_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-    </android.support.v7.widget.CardView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_transaction_button"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_centerInParent="true"/>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:padding="10dp">
+</RelativeLayout>
 
-        <TextView
-            android:id="@+id/usd_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:foreground="?selectableItemBackground"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+
+

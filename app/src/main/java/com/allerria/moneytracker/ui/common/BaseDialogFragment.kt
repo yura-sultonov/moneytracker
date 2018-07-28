@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.MvpAppCompatDialogFragment
 import dagger.android.support.AndroidSupportInjection
 
 
-abstract class BaseFragment: MvpAppCompatFragment() {
+abstract class BaseDialogFragment: MvpAppCompatDialogFragment() {
     protected abstract val layoutRes: Int
     abstract val TAG: String
 

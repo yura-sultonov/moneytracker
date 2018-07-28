@@ -45,7 +45,6 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        MoneyTrackerApp.component.inject(this)
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             router.newRootScreen(Screens.BALANCE_SCREEN)

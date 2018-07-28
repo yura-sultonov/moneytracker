@@ -8,7 +8,7 @@ import android.view.View
 import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
-import com.allerria.moneytracker.model.interactor.FinanceManagerInteractor
+import com.allerria.moneytracker.model.interactor.WalletInteractor
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -24,19 +24,15 @@ class SettingsFragment : BaseFragment(), SettingsView {
     @Inject
     lateinit var app: Context
 
+    @Inject
     @InjectPresenter
     lateinit var presenter: SettingsPresenter
-
-    @Inject lateinit var financeManagerInteractor: FinanceManagerInteractor
 
     private lateinit var dialogBuilder: AlertDialog.Builder
 
     @ProvidePresenter
-    fun providePresenter(): SettingsPresenter = SettingsPresenter(financeManagerInteractor)
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        MoneyTrackerApp.component.inject(this)
+    fun providePresenter(): SettingsPresenter {
+        return presenter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

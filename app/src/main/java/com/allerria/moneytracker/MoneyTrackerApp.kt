@@ -4,9 +4,6 @@ import android.app.Activity
 import android.app.Application
 import com.allerria.moneytracker.di.AppComponent
 import com.allerria.moneytracker.di.DaggerAppComponent
-import com.allerria.moneytracker.di.modules.ApiModule
-import com.allerria.moneytracker.di.modules.AppModule
-import com.allerria.moneytracker.di.modules.FinanceModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -14,19 +11,21 @@ import javax.inject.Inject
 import timber.log.Timber
 
 
-class MoneyTrackerApp : Application() {
+class MoneyTrackerApp : Application(), HasActivityInjector {
 
     companion object {
         lateinit var INSTANCE: MoneyTrackerApp
         lateinit var component: AppComponent
     }
 
+    @Inject
+    lateinit var mActivityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
-       component = buildComponent()
-
         INSTANCE = this
+        component = createComponent()
+        component.inject(this)
         initLogger()
     }
 
@@ -36,12 +35,12 @@ class MoneyTrackerApp : Application() {
         }
     }
 
-    private fun buildComponent(): AppComponent {
-        return DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .apiModule(ApiModule("https://openexchangerates.org/"))
-                .financeModule(FinanceModule())
-                .build()
+    private fun createComponent(): AppComponent {
+        return DaggerAppComponent.builder().application(this).build()
+    }
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return mActivityDispatchingAndroidInjector
     }
 
 }
