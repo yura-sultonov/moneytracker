@@ -1,15 +1,54 @@
 <resources>
     <string name="app_name">Money Tracker</string>
     <string name="author_name">\@Allerria</string>
-    <string name="navigation_drawer_open">Navigation drawer open</string>
-    <string name="navigation_drawer_close">Navigation drawer close</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="balance">Баланс</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
+    <string name="add_transaction">Добавление транзакции</string>
     <string name="wipe_data">Очистить все данные</string>
     <string name="data_deletion">Удаление данных</string>
     <string name="are_you_sure_to_delete">Вы точно хотите удалить все данные?</string>
     <string name="cash">Наличные</string>
     <string name="card">Кредитная карта</string>
+
+    <string name="auto">Авто</string>
+    <string name="clothing">Одежда</string>
+    <string name="house">Дом</string>
+    <string name="cafe_and_restaurants">Кафе и рестораны</string>
+    <string name="entertainment">Развлечения</string>
+    <string name="health">Здоровье</string>
+    <string name="other">Другое</string>
+    <string name="salary">Зарплата</string>
+    <string name="gift">Подарок</string>
+    <string name="income">Доход</string>
+    <string name="expense">Расход</string>
+
+    <string-array name="currencies">
+        <item>@string/rub</item>
+        <item>@string/usd</item>
+        <item>@string/eur</item>
+    </string-array>
+    <string-array name="wallets">
+        <item>@string/cash</item>
+        <item>@string/card</item>
+    </string-array>
+    <string-array name="transaction_types">
+        <item>@string/expense</item>
+        <item>@string/income</item>
+    </string-array>
+    <string-array name="transaction_expense_categories">
+        <item>@string/auto</item>
+        <item>@string/clothing</item>
+        <item>@string/house</item>
+        <item>@string/cafe_and_restaurants</item>
+        <item>@string/entertainment</item>
+        <item>@string/health</item>
+        <item>@string/other</item>
+    </string-array>
+    <string-array name="transaction_income_categories">
+        <item>@string/salary</item>
+        <item>@string/gift</item>
+        <item>@string/other</item>
+    </string-array>
 </resources>

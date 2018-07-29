@@ -3,13 +3,11 @@ package com.allerria.moneytracker.ui.main.balance
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
-import com.allerria.moneytracker.entity.Currency
 import com.allerria.moneytracker.entity.Money
-import com.allerria.moneytracker.model.interactor.WalletInteractor
 import com.allerria.moneytracker.ui.common.BaseFragment
+import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_balance.*
@@ -43,7 +41,13 @@ class BalanceFragment : BaseFragment(), BalanceView {
         balanceViewPagerAdapter = BalanceViewPagerAdapter()
         balance_view_pager.adapter = balanceViewPagerAdapter
         balance_tab_layout.setupWithViewPager(balance_view_pager)
-        add_transaction_button.setOnClickListener { router.navigateTo(Screens.ABOUT_SCREEN) }
+        add_transaction_button.setOnClickListener {
+            router.navigateTo(Screens.ADD_TRANSACTION_SCREEN)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.showBalance()
     }
 

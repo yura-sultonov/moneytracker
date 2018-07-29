@@ -9,11 +9,8 @@ import com.allerria.moneytracker.model.data.datasource.remote.CurrencyRateApi
 import com.allerria.moneytracker.model.data.repository.CurrencyRateRepository
 import com.allerria.moneytracker.model.data.repository.TransactionsRepository
 import com.allerria.moneytracker.model.data.repository.WalletRepository
-import com.allerria.moneytracker.model.interactor.ConverterInteractor
-import com.allerria.moneytracker.ui.main.MainActivity
 import dagger.Module
 import dagger.Provides
-import dagger.android.ContributesAndroidInjector
 import javax.inject.Singleton
 
 @Module
@@ -49,11 +46,5 @@ class AppModule {
     @Provides
     @Singleton
     fun provideTransactionCache(): TransactionsCache = TransactionsCache()
-
-    @Provides
-    @Singleton
-    fun provideMoneyConverterInteractor(
-            currencyRateRepository: CurrencyRateRepository
-    ): ConverterInteractor = ConverterInteractor(currencyRateRepository)
 
 }

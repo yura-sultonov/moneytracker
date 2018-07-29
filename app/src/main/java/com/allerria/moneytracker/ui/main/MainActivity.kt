@@ -9,7 +9,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
-import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.ui.common.BaseActivity
@@ -17,6 +16,7 @@ import com.allerria.moneytracker.ui.common.BaseFragment
 import com.allerria.moneytracker.ui.main.about.AboutFragment
 import com.allerria.moneytracker.ui.main.balance.BalanceFragment
 import com.allerria.moneytracker.ui.main.settings.SettingsFragment
+import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -49,7 +49,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
         if (savedInstanceState == null) {
             router.newRootScreen(Screens.BALANCE_SCREEN)
         }
-        presenter.initView()
+        initView()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -112,6 +112,11 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                 drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 nav_view.menu.getItem(0).isChecked = true
             }
+            Screens.ADD_TRANSACTION_SCREEN -> {
+                supportActionBar?.setTitle(R.string.add_transaction)
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
         }
     }
 
@@ -123,6 +128,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             Screens.BALANCE_SCREEN -> BalanceFragment()
             Screens.ABOUT_SCREEN -> AboutFragment()
             Screens.SETTINGS_SCREEN -> SettingsFragment()
+            Screens.ADD_TRANSACTION_SCREEN -> AddTransactionFragment()
             else -> null
         }
     }

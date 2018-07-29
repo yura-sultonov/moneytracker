@@ -8,5 +8,5 @@ object Screens {
     const val SETTINGS_SCREEN = "settingsFragment"
     const val ABOUT_SCREEN = "aboutFragment"
 
-    const val ADD_TRANSACTION_SCREEN = "addTransactionDialogFragment"
+    const val ADD_TRANSACTION_SCREEN = "addTransactionFragment"
 }

@@ -25,8 +25,8 @@ class WalletInteractor @Inject constructor(private val converterInteractor: Conv
     fun executeTransaction(transaction: Transaction) {
         val walletBalance = walletRepository.getBalance(transaction.walletUid)!!.value
         when (transaction.type) {
-            TransactionType.EXPENSE -> walletRepository.setBalance(transaction.walletUid, walletBalance - converterInteractor.convert(transaction.money, Currency.USD).value)
-            TransactionType.INCOME -> walletRepository.setBalance(transaction.walletUid, walletBalance + converterInteractor.convert(transaction.money, Currency.USD).value)
+            TransactionType.EXPENSE -> walletRepository.setBalance(transaction.walletUid, walletBalance - transaction.money.value)
+            TransactionType.INCOME -> walletRepository.setBalance(transaction.walletUid, walletBalance + transaction.money.value)
         }
         transactionsRepository.addTransaction(transaction)
     }

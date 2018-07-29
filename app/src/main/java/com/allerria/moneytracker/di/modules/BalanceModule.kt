@@ -1,10 +1,11 @@
 package com.allerria.moneytracker.di.modules
 
+import com.allerria.moneytracker.model.data.repository.CurrencyRateRepository
 import com.allerria.moneytracker.model.data.repository.TransactionsRepository
 import com.allerria.moneytracker.model.data.repository.WalletRepository
 import com.allerria.moneytracker.model.interactor.ConverterInteractor
 import com.allerria.moneytracker.model.interactor.WalletInteractor
-import com.allerria.moneytracker.ui.main.transaction.AddTransactionDialogFragment
+import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -25,9 +26,11 @@ abstract class BalanceModule {
                 transactionsRepository,
                 walletRepository
         )
+
+        @Provides
+        @Singleton
+        fun provideConverterInteractor(
+                currencyRateRepository: CurrencyRateRepository
+        ): ConverterInteractor = ConverterInteractor(currencyRateRepository)
     }
-
-    @ContributesAndroidInjector(modules = [AddTransactionModule::class])
-    abstract fun bindAddTransactionDialogFragment(): AddTransactionDialogFragment
-
 }
