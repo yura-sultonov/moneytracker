@@ -10,4 +10,10 @@ class TransactionsRepository @Inject constructor(private val transactionsCache: 
     fun addTransaction(transaction: Transaction) {
         transactionsCache.transactions.add(transaction)
     }
+
+    fun getTransactions(uid: String) = transactionsCache.transactions.filter { it.walletUid == uid }
+
+    fun clear() {
+        transactionsCache.transactions.clear()
+    }
 }

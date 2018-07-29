@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -77,7 +78,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
                 if ((supportFragmentManager.fragments.first() as BaseFragment).TAG != Screens.BALANCE_SCREEN) {
-                    router.backTo(Screens.BALANCE_SCREEN)
+                    router.exit()
                 } else {
                     drawer_layout.openDrawer(GravityCompat.START)
                 }
@@ -95,6 +96,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     }
 
     private fun onChangeFragment(tag: String) {
+        Timber.d(tag)
         if (tag == Screens.BALANCE_SCREEN || tag == "init") {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
             toggle.syncState()

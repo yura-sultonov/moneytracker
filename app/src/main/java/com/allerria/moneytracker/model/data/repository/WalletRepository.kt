@@ -12,9 +12,15 @@ class WalletRepository @Inject constructor(private val walletCache: WalletCache)
         walletCache.wallets.find { it.uid == uid }!!.value = value
     }
 
+    fun getWallet(uid: String) = walletCache.wallets.find { it.uid == uid }
+
     fun getWallets() = walletCache.wallets
 
     fun addWallet(wallet: Wallet) {
         walletCache.wallets.add(wallet)
+    }
+
+    fun clear() {
+        walletCache.wallets.clear()
     }
 }

@@ -9,4 +9,6 @@ object Screens {
     const val ABOUT_SCREEN = "aboutFragment"
     const val ADD_TRANSACTION_SCREEN = "addTransactionFragment"
     const val ADD_WALLET_SCREEN = "addWalletFragment"
+
+    const val WALLET_SCREEN = "walletFragment"
 }

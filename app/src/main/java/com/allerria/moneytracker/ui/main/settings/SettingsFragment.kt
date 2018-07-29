@@ -13,6 +13,7 @@ import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_settings.*
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 
@@ -23,6 +24,9 @@ class SettingsFragment : BaseFragment(), SettingsView {
 
     @Inject
     lateinit var app: Context
+
+    @Inject
+    lateinit var router: Router
 
     @Inject
     @InjectPresenter
@@ -45,6 +49,6 @@ class SettingsFragment : BaseFragment(), SettingsView {
         wipe_data_text_view.setOnClickListener {
             dialogBuilder.show()
         }
+        add_wallet_text_view.setOnClickListener { router.navigateTo(Screens.ADD_WALLET_SCREEN) }
     }
-
 }

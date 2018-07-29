@@ -8,6 +8,6 @@ import javax.inject.Inject
 @InjectViewState
 class SettingsPresenter @Inject constructor(private val walletInteractor: WalletInteractor) : MvpPresenter<SettingsView>() {
     fun wipeData() {
-        walletInteractor.getWallets().forEach { walletInteractor.setBalance(it.uid, 0.0) }
+        walletInteractor.wipeData()
     }
 }

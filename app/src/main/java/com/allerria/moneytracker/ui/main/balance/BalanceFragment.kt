@@ -2,19 +2,17 @@ package com.allerria.moneytracker.ui.main.balance
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
-import com.allerria.moneytracker.entity.Money
 import com.allerria.moneytracker.entity.Wallet
 import com.allerria.moneytracker.ui.common.BaseFragment
-import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_balance.*
 import ru.terrakok.cicerone.Router
-import timber.log.Timber
 import javax.inject.Inject
 
 class BalanceFragment : BaseFragment(), BalanceView {
@@ -33,11 +31,10 @@ class BalanceFragment : BaseFragment(), BalanceView {
     lateinit var app: Context
 
     @Inject
-    lateinit var balanceViewPagerAdapter: BalanceViewPagerAdapter
-
-    @Inject
     @InjectPresenter
     lateinit var presenter: BalancePresenter
+
+    private lateinit var balanceViewPagerAdapter: BalanceViewPagerAdapter
 
     private var viewPagerItem = 0
 
@@ -48,8 +45,9 @@ class BalanceFragment : BaseFragment(), BalanceView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        balanceViewPagerAdapter = BalanceViewPagerAdapter(childFragmentManager)
         balance_view_pager.adapter = balanceViewPagerAdapter
+        balance_view_pager.offscreenPageLimit = 3
         add_transaction_button.setOnClickListener {
             router.navigateTo(Screens.ADD_TRANSACTION_SCREEN)
         }
@@ -77,4 +75,5 @@ class BalanceFragment : BaseFragment(), BalanceView {
     override fun showBalance(wallets: List<Wallet>) {
         balanceViewPagerAdapter.setData(wallets)
     }
+
 }

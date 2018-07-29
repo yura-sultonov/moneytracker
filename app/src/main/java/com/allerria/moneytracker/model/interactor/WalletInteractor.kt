@@ -13,7 +13,13 @@ class WalletInteractor @Inject constructor(private val converterInteractor: Conv
         return walletRepository.getWallets()
     }
 
-    fun getBalance(uid: String): List<Money> = converterInteractor.convert(Money(Currency.USD, walletRepository.getBalance(uid)!!.value))
+    fun getWallet(uid: String): Wallet = walletRepository.getWallet(uid) ?: Wallet("fake", WalletType.CASH, 0.0, "fake", Currency.USD)
+
+    fun getBalance(uid: String): List<Money> = converterInteractor.convert(Money(Currency.USD, walletRepository.getBalance(uid).value))
+
+    fun getTransactions(): List<Transaction> = transactionsRepository.getTransactions()
+
+    fun getTransactions(uid: String): List<Transaction> = transactionsRepository.getTransactions(uid)
 
     fun setBalance(uid: String, value: Double) {
         walletRepository.setBalance(uid, value)
@@ -42,5 +48,10 @@ class WalletInteractor @Inject constructor(private val converterInteractor: Conv
 
     fun addWallet(wallet: Wallet) {
         walletRepository.addWallet(wallet)
+    }
+
+    fun wipeData() {
+        walletRepository.clear()
+        transactionsRepository.clear()
     }
 }
