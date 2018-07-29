@@ -31,7 +31,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
     lateinit var presenter: AddTransactionPresenter
 
     @ProvidePresenter
-    fun provideAddTransactionPresenter(): AddTransactionPresenter {
+    fun providePresenter(): AddTransactionPresenter {
         return presenter
     }
 
@@ -62,7 +62,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
     }
 
     override fun setWallets(wallets: List<Wallet>) {
-        transaction_wallet_spinner.adapter = ArrayAdapter<String>(context, android.R.layout.simple_selectable_list_item, wallets.map { it -> it.name })
+        transaction_wallet_spinner.adapter = ArrayAdapter<String>(context, android.R.layout.simple_selectable_list_item, wallets.map { it -> "${it.name} - ${it.type.name} - ${it.currency.sign}" })
         localWallets = wallets
     }
 
@@ -88,7 +88,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
             else -> TransactionCategory.OTHER
         }
         val details: String = transaction_details_edit_text.text.toString()
-        val wallet: Wallet = localWallets.find { it.name == transaction_wallet_spinner.selectedItem }!!
+        val wallet: Wallet = localWallets.find { "${it.name} - ${it.type.name} - ${it.currency.sign}" == transaction_wallet_spinner.selectedItem.toString() }!!
         val transactionValue = if (transaction_value_edit_text.text.toString().isNotEmpty()) transaction_value_edit_text.text.toString() else "0.0"
         money = Money(wallet.currency, transactionValue.toDouble())
         return Transaction(UUID.randomUUID().toString(), transactionType, transactionCategory, money, wallet.uid, details, Calendar.getInstance().time)

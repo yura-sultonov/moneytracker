@@ -10,19 +10,19 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/transaction_type_text_view"
+            android:id="@+id/wallet_name_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="category"
+            android:text="wallet name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/transaction_type_spinner"
+        <EditText
+            android:id="@+id/wallet_name_edit_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -32,47 +32,48 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_type_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_name_text_view"
+            android:inputType="textNoSuggestions" />
 
         <TextView
-            android:id="@+id/transaction_category_text_view"
+            android:id="@+id/wallet_currency_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="transaction category"
+            android:text="wallet currency"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_type_spinner" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_name_edit_text" />
 
         <Spinner
-            android:id="@+id/transaction_category_spinner"
+            android:id="@+id/wallet_currency_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:entries="@array/transaction_expense_categories"
+            android:entries="@array/currencies"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_category_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_currency_text_view" />
 
         <TextView
-            android:id="@+id/transaction_value_text_view"
+            android:id="@+id/wallet_initial_balance_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="kolvo"
+            android:text="initial balance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_category_spinner" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_currency_spinner" />
 
         <EditText
-            android:id="@+id/transaction_value_edit_text"
+            android:id="@+id/wallet_initial_balance_edit_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -82,63 +83,36 @@
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_value_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_initial_balance_text_view" />
 
 
         <TextView
-            android:id="@+id/transaction_wallet_text_view"
+            android:id="@+id/wallet_type_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="kowelek"
+            android:text="wallet type"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_value_edit_text" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_initial_balance_edit_text" />
 
         <Spinner
-            android:id="@+id/transaction_wallet_spinner"
+            android:id="@+id/wallet_type_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:entries="@array/wallet_types"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_wallet_text_view" />
-
-        <TextView
-            android:id="@+id/transaction_details_text_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="details"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_wallet_spinner" />
-
-        <EditText
-            android:id="@+id/transaction_details_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:hint="detal ostav"
-            android:inputType="textShortMessage"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_details_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_type_text_view" />
 
         <Button
-            android:id="@+id/add_transaction_button"
+            android:id="@+id/add_wallet_button"
             style="@android:style/Widget.Material.Button.Borderless.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -147,7 +121,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_details_edit_text" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_type_spinner" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

@@ -1,12 +1,9 @@
-package com.allerria.moneytracker.ui.main.balance
+package com.allerria.moneytracker.ui.main.wallet
 
-import com.allerria.moneytracker.entity.Money
 import com.allerria.moneytracker.entity.Wallet
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface BalanceView: MvpView {
-    fun showBalance(wallets: List<Wallet>)
-}
+interface AddWalletView: MvpView

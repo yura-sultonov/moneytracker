@@ -17,6 +17,7 @@ import com.allerria.moneytracker.ui.main.about.AboutFragment
 import com.allerria.moneytracker.ui.main.balance.BalanceFragment
 import com.allerria.moneytracker.ui.main.settings.SettingsFragment
 import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
+import com.allerria.moneytracker.ui.main.wallet.AddWalletFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -94,30 +95,25 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     }
 
     private fun onChangeFragment(tag: String) {
-        when (tag) {
-            Screens.SETTINGS_SCREEN -> {
-                supportActionBar?.setTitle(R.string.settings)
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            }
-            Screens.ABOUT_SCREEN -> {
-                supportActionBar?.setTitle(R.string.about)
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            }
-            Screens.BALANCE_SCREEN, "init" -> {
-                supportActionBar?.setTitle(R.string.balance)
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                toggle.syncState()
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-                nav_view.menu.getItem(0).isChecked = true
-            }
-            Screens.ADD_TRANSACTION_SCREEN -> {
-                supportActionBar?.setTitle(R.string.add_transaction)
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            }
+        if (tag == Screens.BALANCE_SCREEN || tag == "init") {
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            toggle.syncState()
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            nav_view.menu.getItem(0).isChecked = true
+        } else {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
+
+        val titleInt: Int = when (tag) {
+            Screens.SETTINGS_SCREEN -> R.string.settings
+            Screens.ABOUT_SCREEN -> R.string.about
+            Screens.ADD_TRANSACTION_SCREEN -> R.string.add_transaction
+            Screens.ADD_WALLET_SCREEN -> R.string.add_wallet
+            else -> R.string.balance
+        }
+
+        supportActionBar?.setTitle(titleInt)
     }
 
     override val navigator = object : SupportAppNavigator(this, R.id.main_container) {
@@ -129,6 +125,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             Screens.ABOUT_SCREEN -> AboutFragment()
             Screens.SETTINGS_SCREEN -> SettingsFragment()
             Screens.ADD_TRANSACTION_SCREEN -> AddTransactionFragment()
+            Screens.ADD_WALLET_SCREEN -> AddWalletFragment()
             else -> null
         }
     }

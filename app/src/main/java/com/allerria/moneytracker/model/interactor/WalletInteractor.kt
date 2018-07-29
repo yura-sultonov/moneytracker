@@ -3,6 +3,7 @@ package com.allerria.moneytracker.model.interactor
 import com.allerria.moneytracker.entity.*
 import com.allerria.moneytracker.model.data.repository.TransactionsRepository
 import com.allerria.moneytracker.model.data.repository.WalletRepository
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -23,15 +24,23 @@ class WalletInteractor @Inject constructor(private val converterInteractor: Conv
     }
 
     fun executeTransaction(transaction: Transaction) {
-        val walletBalance = walletRepository.getBalance(transaction.walletUid)!!.value
+        var walletBalance = walletRepository.getBalance(transaction.walletUid).value
+        Timber.d(walletBalance.toString())
         when (transaction.type) {
-            TransactionType.EXPENSE -> walletRepository.setBalance(transaction.walletUid, walletBalance - transaction.money.value)
-            TransactionType.INCOME -> walletRepository.setBalance(transaction.walletUid, walletBalance + transaction.money.value)
+            TransactionType.EXPENSE -> walletBalance -= transaction.money.value
+            TransactionType.INCOME -> walletBalance += transaction.money.value
         }
         transactionsRepository.addTransaction(transaction)
+        Timber.d(walletBalance.toString())
+        setBalance(transaction.walletUid, walletBalance)
+        Timber.d(getWallets().toString())
     }
 
     fun executeTransactions(transactions: List<Transaction>) {
         transactions.forEach { executeTransaction(it) }
+    }
+
+    fun addWallet(wallet: Wallet) {
+        walletRepository.addWallet(wallet)
     }
 }
