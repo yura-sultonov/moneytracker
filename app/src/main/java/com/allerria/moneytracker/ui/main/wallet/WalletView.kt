@@ -5,6 +5,5 @@ import com.allerria.moneytracker.entity.Wallet
 import com.arellomobile.mvp.MvpView
 
 interface WalletView: MvpView {
-    fun loadWallet(wallet: Wallet)
-    fun loadTransactions(transactions: List<Transaction>)
+    fun loadWallet(wallet: Wallet, transactions: List<Transaction>)
 }

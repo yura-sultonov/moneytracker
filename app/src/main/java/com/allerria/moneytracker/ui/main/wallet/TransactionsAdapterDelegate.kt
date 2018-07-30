@@ -40,9 +40,9 @@ class TransactionsAdapterDelegate : AdapterDelegate<MutableList<Any>>() {
                 }
                 currency_text_view.text = transaction.money.currency.name
                 value_text_view.text = transaction.money.value.formatMoney()
-                details_text_view.text = transaction.details
-                if (details_text_view.text.isNotEmpty()) {
-                    details_text_view.text = "${details_text_view.text} "
+                name_text_view.text = transaction.details
+                if (name_text_view.text.isNotEmpty()) {
+                    name_text_view.text = "${name_text_view.text} "
                 }
                 when(transaction.type) {
                     TransactionType.INCOME -> {

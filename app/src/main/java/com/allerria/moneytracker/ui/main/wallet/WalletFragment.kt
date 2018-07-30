@@ -76,20 +76,25 @@ class WalletFragment : BaseFragment(), WalletView {
         presenter.initView(walletUid)
     }
 
-    override fun loadTransactions(transactions: List<Transaction>) {
-        transactionsAdapter.setData(transactions)
-    }
-
-    override fun loadWallet(wallet: Wallet) {
-        Timber.d(wallet.toString())
+    override fun loadWallet(wallet: Wallet, transactions: List<Transaction>) {
         with(wallet_card_view) {
             when(wallet.type) {
                 WalletType.CASH -> wallet_image_view.setImageDrawable(context.getDrawable(R.drawable.ic_wallet_cash))
                 WalletType.CARD -> wallet_image_view.setImageDrawable(context.getDrawable(R.drawable.ic_wallet_card))
             }
-            details_text_view.text = wallet.name
+            name_text_view.text = wallet.name
             balance_text_view.text = wallet.value.formatMoney() + wallet.currency.sign
+            if (transactions.isEmpty()) {
+                show_charts_image_button.visibility = View.GONE
+            } else {
+                show_charts_image_button.visibility = View.VISIBLE
+                show_charts_image_button.setOnClickListener {
+                    val walletChartDialogFragment = WalletChartDialogFragment.newInstance(wallet.uid)
+                    walletChartDialogFragment.show(childFragmentManager, Screens.WALLET_CHART_SCREEN)
+                }
+            }
         }
+        transactionsAdapter.setData(transactions)
     }
 
 }

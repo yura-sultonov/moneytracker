@@ -5,4 +5,12 @@
     <color name="colorAccent">#222222</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGreen">#00CC00</color>
+    <color name="empty">#FFFFFF</color>
+    <color name="progress">#000000</color>
+    <color name="progress_disable">#4bffffff</color>
+    <color name="progress_click">#00CC00</color>
+    <color name="pin_background">#00CC00</color>
+    <color name="pin_text">#ffffff</color>
+    <color name="bar_title_color">#B6BDD5</color>
+    <color name="bar_title_selected_color">#FFFFFF</color>
 </resources>

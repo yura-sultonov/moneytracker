@@ -131,7 +131,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="detal ostav"
             android:inputType="textShortMessage"
             android:selectAllOnFocus="true"
             android:singleLine="true"

@@ -11,4 +11,5 @@ object Screens {
     const val ADD_WALLET_SCREEN = "addWalletFragment"
 
     const val WALLET_SCREEN = "walletFragment"
+    const val WALLET_CHART_SCREEN = "walletChartDialogFragment"
 }

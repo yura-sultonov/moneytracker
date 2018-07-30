@@ -16,3 +16,8 @@ fun Double.formatMoney(): String {
     val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.GERMANY)
     return format.format(this).dropLast(1)
 }
+
+fun Float.formatMoney(): String {
+    val format: NumberFormat = NumberFormat.getCurrencyInstance(Locale.GERMANY)
+    return format.format(this).dropLast(1)
+}

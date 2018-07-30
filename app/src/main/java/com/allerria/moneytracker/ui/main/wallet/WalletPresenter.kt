@@ -11,7 +11,6 @@ class WalletPresenter @Inject constructor(private val walletInteractor: WalletIn
     fun initView(uid: String) {
         Timber.d(uid)
         Timber.d(walletInteractor.getWallets().toString())
-        viewState.loadWallet(walletInteractor.getWallet(uid))
-        viewState.loadTransactions(walletInteractor.getTransactions(uid))
+        viewState.loadWallet(walletInteractor.getWallet(uid), walletInteractor.getTransactions(uid))
     }
 }
