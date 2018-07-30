@@ -1,13 +1,39 @@
 <resources>
-    <string name="app_name">Money Tracker</string>
-    <string name="author_name">\@Allerria</string>
-    <string name="navigation_drawer_open">Navigation drawer open</string>
-    <string name="navigation_drawer_close">Navigation drawer close</string>
-    <string name="title_activity_main">MainActivity</string>
+
     <string name="balance">Баланс</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
+    <string name="add_transaction">Добавление транзакции</string>
+    <string name="add_wallet">Добавление кошелька</string>
     <string name="wipe_data">Очистить все данные</string>
     <string name="data_deletion">Удаление данных</string>
     <string name="are_you_sure_to_delete">Вы точно хотите удалить все данные?</string>
+    <string name="cash">Наличные</string>
+    <string name="card">Кредитная карта</string>
+
+    <string name="auto">Авто</string>
+    <string name="clothing">Одежда</string>
+    <string name="house">Дом</string>
+    <string name="cafe_and_restaurants">Кафе и рестораны</string>
+    <string name="entertainment">Развлечения</string>
+    <string name="health">Здоровье</string>
+    <string name="other">Другое</string>
+    <string name="salary">Зарплата</string>
+    <string name="gift">Подарок</string>
+    <string name="income">Доход</string>
+    <string name="expense">Расход</string>
+
+    <string name="fill_value">Пожалуйста заполните поле суммы</string>
+    <string name="fill_name">Пожалуйста заполните поле названия</string>
+    <string name="success">Успех!</string>
+    <string name="category">Категория</string>
+    <string name="type">Тип</string>
+    <string name="amount">Сумма</string>
+    <string name="wallet">Кошелек</string>
+    <string name="details">Подробности</string>
+    <string name="create">Создать</string>
+    <string name="name">Название</string>
+    <string name="currency">Валюта</string>
+    <string name="initial_balance">Начальный баланс</string>
+    <string name="add_wallet_in_balance">Есть два варианта добавить Кошелек: в настройках или через кнопку в нижнем правом углу</string>
 </resources>

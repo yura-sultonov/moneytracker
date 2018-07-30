@@ -1,17 +1,19 @@
 package com.allerria.moneytracker.di
 
 import com.allerria.moneytracker.MoneyTrackerApp
-import com.allerria.moneytracker.ui.main.about.AboutFragment
-import com.allerria.moneytracker.ui.main.balance.BalanceFragment
-import com.allerria.moneytracker.ui.main.settings.SettingsFragment
+import com.allerria.moneytracker.di.modules.ApiModule
+import com.allerria.moneytracker.di.modules.AppModule
+import com.allerria.moneytracker.di.modules.NavigationModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AppModule::class, AndroidInjectionModule::class, ActivityBuilder::class, FinanceModule::class))
+@Component(modules = [AppModule::class, AndroidInjectionModule::class, NavigationModule::class, ActivityBuilder::class, ApiModule::class])
 interface AppComponent {
+
+    fun inject(app: MoneyTrackerApp)
 
     @Component.Builder
     interface Builder {
@@ -20,10 +22,4 @@ interface AppComponent {
 
         fun build(): AppComponent
     }
-
-    fun inject(app: MoneyTrackerApp)
-    fun inject(balanceFragment: BalanceFragment)
-    fun inject(settingsFragment: SettingsFragment)
-    fun inject(aboutFragment: AboutFragment)
-
 }

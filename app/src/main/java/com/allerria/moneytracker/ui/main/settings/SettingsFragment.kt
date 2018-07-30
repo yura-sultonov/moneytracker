@@ -7,34 +7,36 @@ import android.os.Bundle
 import android.view.View
 import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
-import com.allerria.moneytracker.model.FinanceManager
+import com.allerria.moneytracker.Screens
+import com.allerria.moneytracker.model.interactor.WalletInteractor
 import com.allerria.moneytracker.ui.common.BaseFragment
-import com.allerria.moneytracker.ui.main.MainActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_settings.*
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 
 class SettingsFragment : BaseFragment(), SettingsView {
 
     override val layoutRes = R.layout.fragment_settings
-    override val TAG = MainActivity.SETTINGS_FRAGMENT
+    override val TAG = Screens.SETTINGS_SCREEN
 
     @Inject
     lateinit var app: Context
 
+    @Inject
+    lateinit var router: Router
+
+    @Inject
     @InjectPresenter
     lateinit var presenter: SettingsPresenter
 
     private lateinit var dialogBuilder: AlertDialog.Builder
 
     @ProvidePresenter
-    fun providePresenter(): SettingsPresenter = SettingsPresenter()
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        MoneyTrackerApp.component.inject(this)
+    fun providePresenter(): SettingsPresenter {
+        return presenter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,6 +49,6 @@ class SettingsFragment : BaseFragment(), SettingsView {
         wipe_data_text_view.setOnClickListener {
             dialogBuilder.show()
         }
+        add_wallet_text_view.setOnClickListener { router.navigateTo(Screens.ADD_WALLET_SCREEN) }
     }
-
 }
