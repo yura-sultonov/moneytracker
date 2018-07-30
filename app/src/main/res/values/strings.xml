@@ -30,6 +30,20 @@
     <string name="income">Income</string>
     <string name="expense">Expense</string>
 
+    <string name="fill_value">Please fill value field</string>
+    <string name="fill_name">Please fill wallet name field</string>
+    <string name="success">Success!</string>
+    <string name="category">Category</string>
+    <string name="type">Type</string>
+    <string name="amount">Amount</string>
+    <string name="wallet">Wallet</string>
+    <string name="details">Details</string>
+    <string name="create">Create</string>
+    <string name="name">Name</string>
+    <string name="currency">Currency</string>
+    <string name="initial_balance">Initial balance</string>
+    <string name="add_wallet_in_balance">There is 2 ways to add Wallet: from settings or via button in right bottom corner</string>
+
     <string-array name="currencies">
         <item>@string/rub</item>
         <item>@string/usd</item>

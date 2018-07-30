@@ -12,6 +12,10 @@ import javax.inject.Inject
 class BalancePresenter @Inject constructor(private val walletInteractor: WalletInteractor): MvpPresenter<BalanceView>() {
 
     fun showBalance() {
+        if (walletInteractor.getWallets().isEmpty()) {
+            viewState.refreshWallets()
+        }
+        walletInteractor.updateCurrenciesRate()
         viewState.showBalance(walletInteractor.getWallets())
     }
 

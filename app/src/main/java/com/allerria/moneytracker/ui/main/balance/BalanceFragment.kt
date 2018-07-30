@@ -61,7 +61,9 @@ class BalanceFragment : BaseFragment(), BalanceView {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(VIEW_PAGE, balance_view_pager.currentItem)
+        if (balance_view_pager != null) {
+            outState.putInt(VIEW_PAGE, balance_view_pager.currentItem)
+        }
         super.onSaveInstanceState(outState)
     }
 
@@ -74,6 +76,21 @@ class BalanceFragment : BaseFragment(), BalanceView {
 
     override fun showBalance(wallets: List<Wallet>) {
         balanceViewPagerAdapter.setData(wallets)
+        if (wallets.isNotEmpty() && add_wallet_button.visibility != View.GONE) {
+            add_wallet_button.visibility = View.GONE
+            add_transaction_button.setOnClickListener {
+                router.navigateTo(Screens.ADD_TRANSACTION_SCREEN)
+            }
+        }
+    }
+
+    override fun refreshWallets() {
+        balanceViewPagerAdapter = BalanceViewPagerAdapter(childFragmentManager)
+        balance_view_pager.adapter = balanceViewPagerAdapter
+        balance_view_pager.currentItem = viewPagerItem
+        balance_tab_layout.setupWithViewPager(balance_view_pager)
+        add_wallet_button.visibility = View.VISIBLE
+        add_transaction_button.setOnClickListener { router.navigateTo(Screens.ADD_WALLET_SCREEN) }
     }
 
 }

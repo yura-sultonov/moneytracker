@@ -1,7 +1,10 @@
 package com.allerria.moneytracker.ui.main.wallet
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.entity.Currency
@@ -29,7 +32,22 @@ class AddWalletFragment: BaseFragment(), AddWalletView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        add_wallet_button.setOnClickListener { presenter.addWallet(createWallet()) }
+        add_wallet_button.setOnClickListener {
+            val wallet = createWallet()
+            if (wallet.name == "") {
+                Toast.makeText(this@AddWalletFragment.context, R.string.fill_name, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@AddWalletFragment.context, R.string.success, Toast.LENGTH_LONG).show()
+                presenter.addWallet(wallet)
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val view = activity?.currentFocus
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
+        super.onDestroy()
     }
 
     private fun createWallet(): Wallet {

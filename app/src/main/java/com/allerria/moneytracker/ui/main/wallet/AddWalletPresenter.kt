@@ -1,5 +1,6 @@
 package com.allerria.moneytracker.ui.main.wallet
 
+import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.entity.Wallet
 import com.allerria.moneytracker.model.interactor.WalletInteractor
 import com.arellomobile.mvp.InjectViewState
@@ -11,6 +12,6 @@ import javax.inject.Inject
 class AddWalletPresenter @Inject constructor(private val walletInteractor: WalletInteractor, private val router: Router): MvpPresenter<AddWalletView>() {
     fun addWallet(wallet: Wallet) {
         walletInteractor.addWallet(wallet)
-        router.exit()
+        router.backTo(Screens.BALANCE_SCREEN)
     }
 }

@@ -9,5 +9,5 @@ import java.util.*
 import javax.inject.Inject
 
 class WalletCache @Inject constructor(context: Context) {
-    var wallets: MutableList<Wallet> = mutableListOf(Wallet(UUID.randomUUID().toString(), WalletType.CASH, 1.0, context.getString(R.string.cash), Currency.USD), Wallet(UUID.randomUUID().toString(), WalletType.CARD, 1.0, context.getString(R.string.card), Currency.RUB))
+    var wallets: MutableList<Wallet> = mutableListOf(Wallet(UUID.randomUUID().toString(), WalletType.CASH, 1.0, context.getString(R.string.other), Currency.USD), Wallet(UUID.randomUUID().toString(), WalletType.CARD, 1.0, context.getString(R.string.salary), Currency.RUB))
 }

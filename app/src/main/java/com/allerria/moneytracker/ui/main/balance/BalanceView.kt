@@ -10,4 +10,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface BalanceView: MvpView {
     fun showBalance(wallets: List<Wallet>)
+    fun refreshWallets()
 }
