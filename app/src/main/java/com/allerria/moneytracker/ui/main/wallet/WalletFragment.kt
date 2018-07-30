@@ -55,9 +55,9 @@ class WalletFragment : BaseFragment(), WalletView {
                     val position = parent.getChildAdapterPosition(view)
                     val last = parent.adapter!!.itemCount - 1
 
-                    outRect.top = resources.getDimension(R.dimen.margin_10).toInt()
-                    outRect.left = resources.getDimension(R.dimen.margin_15).toInt()
-                    outRect.right = resources.getDimension(R.dimen.margin_15).toInt()
+                    outRect.top = resources.getDimension(R.dimen.margin_8).toInt()
+                    outRect.left = resources.getDimension(R.dimen.margin_16).toInt()
+                    outRect.right = resources.getDimension(R.dimen.margin_16).toInt()
 
                     if (position == 0) {
                         outRect.top = resources.getDimension(R.dimen.margin_20).toInt()

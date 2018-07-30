@@ -31,5 +31,4 @@ abstract class SettingsModule {
                 currencyRateRepository: CurrencyRateRepository
         ): ConverterInteractor = ConverterInteractor(currencyRateRepository)
     }
-
 }
