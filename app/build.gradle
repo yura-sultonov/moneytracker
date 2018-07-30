@@ -25,6 +25,9 @@ android {
             minifyEnabled	false
         }
     }
+    lintOptions {
+        disable 'MissingTranslation'
+    }
 }
 
 def moxy = '1.5.5'

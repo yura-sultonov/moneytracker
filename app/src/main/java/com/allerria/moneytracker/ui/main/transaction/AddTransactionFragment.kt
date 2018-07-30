@@ -41,9 +41,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         transaction_type_spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) { }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 lateinit var adapter: ArrayAdapter<String>
@@ -54,9 +52,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
                 transaction_category_spinner.adapter = adapter
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onNothingSelected(p0: AdapterView<*>?){ }
         }
         presenter.initWallets()
         add_transaction_button.setOnClickListener {
