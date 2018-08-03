@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 @InjectViewState
 class WalletPresenter @Inject constructor(private val walletInteractor: WalletInteractor): MvpPresenter<WalletView>() {
-    fun initView(uid: String) {
-        Timber.d(uid)
+    fun initView(id: Long) {
+        Timber.d(id.toString())
         Timber.d(walletInteractor.getWallets().toString())
-        viewState.loadWallet(walletInteractor.getWallet(uid), walletInteractor.getTransactions(uid))
+        viewState.loadWallet(walletInteractor.getWallet(id), walletInteractor.getTransactions(id))
     }
 }

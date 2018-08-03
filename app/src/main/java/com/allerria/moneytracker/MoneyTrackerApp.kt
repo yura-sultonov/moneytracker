@@ -19,7 +19,7 @@ class MoneyTrackerApp : Application(), HasActivityInjector {
     }
 
     @Inject
-    lateinit var mActivityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
@@ -40,7 +40,7 @@ class MoneyTrackerApp : Application(), HasActivityInjector {
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
-        return mActivityDispatchingAndroidInjector
+        return activityDispatchingAndroidInjector
     }
 
 }

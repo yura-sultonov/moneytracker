@@ -7,5 +7,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface WalletChartView: MvpView {
-    fun buildChart(transactions: List<Transaction>)
+    fun buildChart(transactions: kotlin.collections.List<com.allerria.moneytracker.Transactions>)
 }

@@ -2,12 +2,9 @@ package com.allerria.moneytracker.ui.main.balance
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
-import com.allerria.moneytracker.entity.Wallet
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -74,7 +71,7 @@ class BalanceFragment : BaseFragment(), BalanceView {
         }
     }
 
-    override fun showBalance(wallets: List<Wallet>) {
+    override fun showBalance(wallets: kotlin.collections.List<com.allerria.moneytracker.Wallets>) {
         balanceViewPagerAdapter.setData(wallets)
         if (wallets.isNotEmpty() && add_wallet_button.visibility != View.GONE) {
             add_wallet_button.visibility = View.GONE

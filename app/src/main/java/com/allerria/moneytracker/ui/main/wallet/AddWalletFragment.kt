@@ -64,6 +64,6 @@ class AddWalletFragment: BaseFragment(), AddWalletView {
             getString(R.string.cash) -> WalletType.CASH
             else -> WalletType.CASH
         }
-        return Wallet(UUID.randomUUID().toString(), walletType, walletValue, walletName, walletCurrency)
+        return Wallet(10, walletName, walletType, walletValue, walletCurrency)
     }
 }

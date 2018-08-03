@@ -1,0 +1,17 @@
+import com.allerria.moneytracker.entity.Currency;
+import com.allerria.moneytracker.entity.WalletType;
+
+CREATE TABLE IF NOT EXISTS wallets (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL, type TEXT AS WalletType NOT NULL, value REAL NOT NULL DEFAULT 0, currency TEXT AS Currency NOT NULL);
+
+selectAll:
+SELECT * FROM wallets;
+
+selectWalletById:
+SELECT * FROM wallets WHERE id = ?;
+
+insertWallet:
+INSERT INTO wallets(name, type, currency) VALUES (?, ?, ?);
+
+deleteWallet:
+DELETE FROM wallets WHERE id = ?;
