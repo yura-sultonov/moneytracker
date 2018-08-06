@@ -13,7 +13,7 @@ import com.squareup.sqldelight.android.create
 import com.squareup.sqldelight.db.SqlDatabase
 import javax.inject.Inject
 
-class AppDbHelper @Inject constructor(context: Context) : SupportSQLiteOpenHelper.Callback(QueryWrapper.version) {
+open class AppDbHelper @Inject constructor(context: Context) : SupportSQLiteOpenHelper.Callback(QueryWrapper.version) {
 
     val wrapper: QueryWrapper = createQueryWrapper(QueryWrapper.create(
             context = context,

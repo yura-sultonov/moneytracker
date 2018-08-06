@@ -17,10 +17,11 @@ class WalletRepository @Inject constructor(private val db: AppDbHelper) {
     fun getWallets() = db.wrapper.walletQueries.selectAll().executeAsList()
 
     fun addWallet(wallet: Wallet) {
-        db.wrapper.walletQueries.insertWallet(wallet.name, wallet.type, wallet.currency, 0.0)
+        db.wrapper.walletQueries.insertWallet(wallet.name, wallet.type, wallet.currency, wallet.value)
     }
 
     fun clear() {
+        db.wrapper.transactionQueries.deleteAll()
         db.wrapper.walletQueries.deleteAllWallet()
     }
 
