@@ -2,7 +2,6 @@ package com.allerria.moneytracker.model.data.repository
 
 import com.allerria.moneytracker.entity.Wallet
 import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
-import timber.log.Timber
 import javax.inject.Inject
 
 class WalletRepository @Inject constructor(private val db: AppDbHelper) {
@@ -10,21 +9,19 @@ class WalletRepository @Inject constructor(private val db: AppDbHelper) {
     fun getBalance(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne().balance
 
     fun setBalance(id: Long, value: Double) {
-//
-//        walletCache.wallets.find { it.id == id }!!.value = value
+        db.wrapper.walletQueries.updateValue(value, id)
     }
 
-    fun getWallet(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne()
+    fun getWalletById(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne()
 
     fun getWallets() = db.wrapper.walletQueries.selectAll().executeAsList()
 
     fun addWallet(wallet: Wallet) {
         db.wrapper.walletQueries.insertWallet(wallet.name, wallet.type, wallet.currency, 0.0)
-        Timber.i("Wallet added")
     }
 
     fun clear() {
-        // db
+        db.wrapper.walletQueries.deleteAllWallet()
     }
 
     fun deleteWallet(id: Long) {

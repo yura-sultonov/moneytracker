@@ -15,13 +15,13 @@ class WalletInteractor @Inject constructor(private val converterInteractor: Conv
         return walletRepository.getWallets()
     }
 
-    fun getWallet(id: Long): Wallets = walletRepository.getWallet(id)
+    fun getWallet(id: Long): Wallets = walletRepository.getWalletById(id)
 
     fun getBalance(id: Long): List<Money> = converterInteractor.convert(Money(Currency.USD, walletRepository.getBalance(id)))
 
     fun getTransactions(): List<Transactions> = transactionsRepository.getTransactions()
 
-    fun getTransactions(id: Long): List<Transactions> = transactionsRepository.getTransactions(id)
+    fun getTransactions(id: Long): List<Transactions> = transactionsRepository.getTransactionsWalletId(id)
 
     fun setBalance(id: Long, value: Double) {
         walletRepository.setBalance(id, value)
