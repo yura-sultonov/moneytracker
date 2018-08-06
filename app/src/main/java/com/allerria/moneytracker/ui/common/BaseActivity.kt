@@ -2,7 +2,6 @@ package com.allerria.moneytracker.ui.common
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import com.allerria.moneytracker.MoneyTrackerApp
 import com.arellomobile.mvp.MvpAppCompatActivity
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
@@ -16,7 +15,8 @@ abstract class BaseActivity : MvpAppCompatActivity(), HasSupportFragmentInjector
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
 
     protected abstract val layoutRes: Int
     protected abstract val navigator: Navigator

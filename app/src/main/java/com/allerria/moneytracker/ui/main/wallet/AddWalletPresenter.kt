@@ -9,7 +9,7 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class AddWalletPresenter @Inject constructor(private val walletInteractor: WalletInteractor, private val router: Router): MvpPresenter<AddWalletView>() {
+class AddWalletPresenter @Inject constructor(private val walletInteractor: WalletInteractor, private val router: Router) : MvpPresenter<AddWalletView>() {
     fun addWallet(wallet: Wallet) {
         walletInteractor.addWallet(wallet)
         router.backTo(Screens.BALANCE_SCREEN)

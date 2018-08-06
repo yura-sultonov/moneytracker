@@ -4,4 +4,4 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 
 @InjectViewState
-class AboutPresenter(): MvpPresenter<AboutView>()
+class AboutPresenter() : MvpPresenter<AboutView>()

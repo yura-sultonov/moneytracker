@@ -8,7 +8,7 @@ import com.arellomobile.mvp.MvpAppCompatDialogFragment
 import dagger.android.support.AndroidSupportInjection
 
 
-abstract class BaseDialogFragment: MvpAppCompatDialogFragment() {
+abstract class BaseDialogFragment : MvpAppCompatDialogFragment() {
     protected abstract val layoutRes: Int
     abstract val TAG: String
 

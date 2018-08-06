@@ -10,7 +10,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_info.*
 import javax.inject.Inject
 
-class InfoFragment : BaseFragment(), InfoView{
+class InfoFragment : BaseFragment(), InfoView {
     override val layoutRes = R.layout.fragment_info
     override val TAG = Screens.INFO_SCREEN
 

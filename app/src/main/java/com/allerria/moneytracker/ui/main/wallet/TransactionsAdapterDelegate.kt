@@ -13,7 +13,6 @@ import com.allerria.moneytracker.extensions.inflate
 import com.allerria.moneytracker.extensions.toString
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import kotlinx.android.synthetic.main.item_transaction.view.*
-import java.text.SimpleDateFormat
 
 class TransactionsAdapterDelegate : AdapterDelegate<MutableList<Transactions>>() {
 
@@ -25,10 +24,10 @@ class TransactionsAdapterDelegate : AdapterDelegate<MutableList<Transactions>>()
         (holder as ViewHolder).bind(items[position])
     }
 
-    private inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    private inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(transaction: Transactions) {
             with(itemView) {
-                category_text_view.text = when(transaction.category) {
+                category_text_view.text = when (transaction.category) {
                     TransactionCategory.AUTO.toString() -> context.getString(R.string.auto)
                     TransactionCategory.OTHER.toString() -> context.getString(R.string.other)
                     TransactionCategory.GIFT.toString() -> context.getString(R.string.gift)
@@ -37,7 +36,7 @@ class TransactionsAdapterDelegate : AdapterDelegate<MutableList<Transactions>>()
                     TransactionCategory.ENTERTAINMENT.toString() -> context.getString(R.string.entertainment)
                     TransactionCategory.CAFE_AND_RESTAURANT.toString() -> context.getString(R.string.cafe_and_restaurants)
                     TransactionCategory.HOUSE.toString() -> context.getString(R.string.house)
-                    TransactionCategory.CLOTHING.toString()-> context.getString(R.string.clothing)
+                    TransactionCategory.CLOTHING.toString() -> context.getString(R.string.clothing)
                     else -> ""
                 }
                 currency_text_view.text = transaction.currency.name
@@ -46,7 +45,7 @@ class TransactionsAdapterDelegate : AdapterDelegate<MutableList<Transactions>>()
                 if (name_text_view.text.isNotEmpty()) {
                     name_text_view.text = "${name_text_view.text} "
                 }
-                when(transaction.type) {
+                when (transaction.type) {
                     TransactionType.INCOME -> {
                         value_text_view.setTextColor(ContextCompat.getColor(context, R.color.colorGreen))
                         value_text_view.text = "+${value_text_view.text}"

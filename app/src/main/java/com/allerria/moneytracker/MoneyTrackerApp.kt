@@ -7,8 +7,8 @@ import com.allerria.moneytracker.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import javax.inject.Inject
 import timber.log.Timber
+import javax.inject.Inject
 
 
 class MoneyTrackerApp : Application(), HasActivityInjector {

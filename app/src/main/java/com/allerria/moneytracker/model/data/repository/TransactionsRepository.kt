@@ -4,7 +4,6 @@ import com.allerria.moneytracker.entity.Currency
 import com.allerria.moneytracker.entity.Transaction
 import com.allerria.moneytracker.entity.TransactionType
 import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -28,7 +27,7 @@ class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
 
     fun getTransactionInInterval(from: Calendar, to: Calendar) = db.wrapper.transactionQueries.selectAllInInterval(from, to)
 
-    fun deleteAllByWalletId(id: Long){
+    fun deleteAllByWalletId(id: Long) {
         db.wrapper.transactionQueries.deleteAllByWalletId(id)
     }
 }

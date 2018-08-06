@@ -7,7 +7,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class WalletPresenter @Inject constructor(private val walletInteractor: WalletInteractor): MvpPresenter<WalletView>() {
+class WalletPresenter @Inject constructor(private val walletInteractor: WalletInteractor) : MvpPresenter<WalletView>() {
     fun initView(id: Long) {
         Timber.d(id.toString())
         Timber.d(walletInteractor.getWallets().toString())

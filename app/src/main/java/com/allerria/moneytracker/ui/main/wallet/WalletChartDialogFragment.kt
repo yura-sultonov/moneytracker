@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
-import com.allerria.moneytracker.entity.Transaction
 import com.allerria.moneytracker.entity.TransactionType
 import com.allerria.moneytracker.extensions.formatMoney
 import com.allerria.moneytracker.ui.common.BaseDialogFragment
@@ -13,11 +12,11 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.hadiidbouk.charts.BarData
 import kotlinx.android.synthetic.main.fragment_chart.*
 import timber.log.Timber
-import java.util.ArrayList
+import java.util.*
 import javax.inject.Inject
 
 
-class WalletChartDialogFragment: BaseDialogFragment(), WalletChartView {
+class WalletChartDialogFragment : BaseDialogFragment(), WalletChartView {
     override val layoutRes: Int = R.layout.fragment_chart
     override val TAG: String = Screens.WALLET_CHART_SCREEN
 
@@ -52,20 +51,20 @@ class WalletChartDialogFragment: BaseDialogFragment(), WalletChartView {
         if (expense_type_radio_button.isChecked) {
             transactions.filter { it.type == TransactionType.EXPENSE }.groupBy { it.category }.forEach {
                 var value: Float = 0.0f
-                it.value.forEach {   value += it.amount.toFloat() }
+                it.value.forEach { value += it.amount.toFloat() }
                 val data = BarData(it.key, value, value.formatMoney() + currency)
                 dataList.add(data)
             }
         } else {
             transactions.filter { it.type == TransactionType.INCOME }.groupBy { it.category }.forEach {
                 var value: Float = 0.0f
-                it.value.forEach {   value += it.amount.toFloat() }
+                it.value.forEach { value += it.amount.toFloat() }
                 val data = BarData(it.key, value, value.formatMoney() + currency)
                 dataList.add(data)
             }
         }
         ChartProgressBar.setDataList(dataList)
-        ChartProgressBar.setMaxValue(transactions.maxBy { it.amount}!!.amount.toFloat())
+        ChartProgressBar.setMaxValue(transactions.maxBy { it.amount }!!.amount.toFloat())
         ChartProgressBar.build()
     }
 }

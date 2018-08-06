@@ -2,10 +2,17 @@ import com.allerria.moneytracker.entity.Currency;
 import com.allerria.moneytracker.entity.TransactionType;
 import java.util.Calendar;
 
-CREATE TABLE IF NOT EXISTS transactions (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    type TEXT AS TransactionType NOT NULL, category TEXT NOT NULL DEFAULT '', currency TEXT AS Currency NOT NULL,
-    amount REAL NOT NULL, walletId INTEGER NOT NULL, details TEXT NOT NULL DEFAULT '', date INTEGER AS Calendar NOT NULL,
-    FOREIGN KEY(walletId) REFERENCES wallets(id));
+CREATE TABLE IF NOT EXISTS transactions (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    type TEXT AS TransactionType NOT NULL,
+    category TEXT NOT NULL DEFAULT '',
+    currency TEXT AS Currency NOT NULL,
+    amount REAL NOT NULL,
+    walletId INTEGER NOT NULL,
+    details TEXT NOT NULL DEFAULT '',
+    date INTEGER AS Calendar NOT NULL,
+    FOREIGN KEY(walletId) REFERENCES wallets(id)
+);
 
 insertTransaction:
 INSERT INTO transactions(type, category, currency, amount, walletId, details, date) VALUES (?, ?, ?, ?, ?, ?, ?);

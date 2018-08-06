@@ -4,7 +4,6 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.allerria.moneytracker.entity.Currency
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*

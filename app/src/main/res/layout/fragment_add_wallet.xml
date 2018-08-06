@@ -29,11 +29,11 @@
             android:layout_marginStart="@dimen/margin_20"
             android:layout_marginTop="@dimen/margin_8"
             android:entries="@array/transaction_types"
+            android:inputType="textNoSuggestions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wallet_name_text_view"
-            android:inputType="textNoSuggestions" />
+            app:layout_constraintTop_toBottomOf="@+id/wallet_name_text_view" />
 
         <TextView
             android:id="@+id/wallet_currency_text_view"

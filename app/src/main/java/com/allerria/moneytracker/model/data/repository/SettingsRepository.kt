@@ -13,7 +13,7 @@ class SettingsRepository @Inject constructor(context: Context) {
     private val defaultCurrency = Currency.RUB
 
     fun getCurrentCurrency(): Currency {
-        return when (this.prefs.getString(currencyKey, defaultCurrency.toString())){
+        return when (this.prefs.getString(currencyKey, defaultCurrency.toString())) {
             Currency.RUB.toString() -> Currency.RUB
             Currency.USD.toString() -> Currency.USD
             Currency.EUR.toString() -> Currency.EUR
@@ -21,7 +21,7 @@ class SettingsRepository @Inject constructor(context: Context) {
         }
     }
 
-    fun setCurrentCurrency(currency: Currency){
+    fun setCurrentCurrency(currency: Currency) {
         val editor = this.prefs.edit()
         editor.putString(currencyKey, currency.toString())
         editor.apply()

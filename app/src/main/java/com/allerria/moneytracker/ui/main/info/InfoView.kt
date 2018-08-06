@@ -5,7 +5,7 @@ import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface InfoView: MvpView {
+interface InfoView : MvpView {
     fun setBalanceSum(balanceSum: String)
     fun setMonthExpense(expenseSum: String)
     fun setMonthIncome(incomeSum: String)

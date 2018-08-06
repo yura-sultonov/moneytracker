@@ -1,15 +1,11 @@
 package com.allerria.moneytracker.ui.main.about
 
 import android.content.Context
-import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.ui.common.BaseFragment
-import com.allerria.moneytracker.ui.main.MainActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import dagger.android.AndroidInjection
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 

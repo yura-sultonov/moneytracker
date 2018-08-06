@@ -31,7 +31,7 @@ class WalletFragment : BaseFragment(), WalletView {
 
     private val transactionsAdapter by lazy { TransactionsAdapter() }
 
-    private var walletId:Long = -1
+    private var walletId: Long = -1
 
     @Inject
     @InjectPresenter
@@ -78,7 +78,7 @@ class WalletFragment : BaseFragment(), WalletView {
 
     override fun loadWallet(wallet: Wallets, transactions: List<Transactions>) {
         with(wallet_card_view) {
-            when(wallet.type) {
+            when (wallet.type) {
                 WalletType.CASH -> wallet_image_view.setImageDrawable(context.getDrawable(R.drawable.ic_wallet_cash))
                 WalletType.CARD -> wallet_image_view.setImageDrawable(context.getDrawable(R.drawable.ic_wallet_card))
             }

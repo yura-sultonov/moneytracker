@@ -9,7 +9,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class AddTransactionPresenter @Inject constructor(private val walletInteractor: WalletInteractor, private val router: Router): MvpPresenter<AddTransactionView>() {
+class AddTransactionPresenter @Inject constructor(private val walletInteractor: WalletInteractor, private val router: Router) : MvpPresenter<AddTransactionView>() {
 
     fun initWallets() {
         viewState.setWallets(walletInteractor.getWallets())

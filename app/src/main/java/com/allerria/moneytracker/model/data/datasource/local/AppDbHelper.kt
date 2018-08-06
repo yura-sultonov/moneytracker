@@ -6,9 +6,7 @@ import android.content.Context
 import com.allerria.moneytracker.QueryWrapper
 import com.allerria.moneytracker.Transactions
 import com.allerria.moneytracker.Wallets
-import com.allerria.moneytracker.ui.main.wallet.WalletChartDialogFragment_MembersInjector
 import com.squareup.sqldelight.EnumColumnAdapter
-import com.squareup.sqldelight.android.SqlDelightDatabaseHelper
 import com.squareup.sqldelight.android.create
 import com.squareup.sqldelight.db.SqlDatabase
 import javax.inject.Inject
