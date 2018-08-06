@@ -15,6 +15,7 @@ import com.allerria.moneytracker.ui.common.BaseActivity
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.allerria.moneytracker.ui.main.about.AboutFragment
 import com.allerria.moneytracker.ui.main.balance.BalanceFragment
+import com.allerria.moneytracker.ui.main.info.InfoFragment
 import com.allerria.moneytracker.ui.main.settings.SettingsFragment
 import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
 import com.allerria.moneytracker.ui.main.wallet.AddWalletFragment
@@ -49,13 +50,16 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            router.newRootScreen(Screens.BALANCE_SCREEN)
+            router.newRootScreen(Screens.INFO_SCREEN)
         }
         initView()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_balance -> {
+                router.navigateTo(Screens.BALANCE_SCREEN)
+            }
             R.id.nav_about -> {
                 router.navigateTo(Screens.ABOUT_SCREEN)
             }
@@ -77,7 +81,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
-                if ((supportFragmentManager.fragments.first() as BaseFragment).TAG != Screens.BALANCE_SCREEN) {
+                if ((supportFragmentManager.fragments.first() as BaseFragment).TAG != Screens.INFO_SCREEN) {
                     router.exit()
                 } else {
                     drawer_layout.openDrawer(GravityCompat.START)
@@ -97,7 +101,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
 
     private fun onChangeFragment(tag: String) {
         Timber.d(tag)
-        if (tag == Screens.BALANCE_SCREEN || tag == "init") {
+        if (tag == Screens.INFO_SCREEN || tag == "init") {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
             toggle.syncState()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -112,6 +116,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             Screens.ABOUT_SCREEN -> R.string.about
             Screens.ADD_TRANSACTION_SCREEN -> R.string.add_transaction
             Screens.ADD_WALLET_SCREEN -> R.string.add_wallet
+            Screens.INFO_SCREEN -> R.string.main
             else -> R.string.balance
         }
 
@@ -128,6 +133,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             Screens.SETTINGS_SCREEN -> SettingsFragment()
             Screens.ADD_TRANSACTION_SCREEN -> AddTransactionFragment()
             Screens.ADD_WALLET_SCREEN -> AddWalletFragment()
+            Screens.INFO_SCREEN -> InfoFragment()
             else -> null
         }
     }

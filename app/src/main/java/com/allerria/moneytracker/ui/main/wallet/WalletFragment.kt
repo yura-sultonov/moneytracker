@@ -83,7 +83,7 @@ class WalletFragment : BaseFragment(), WalletView {
                 WalletType.CARD -> wallet_image_view.setImageDrawable(context.getDrawable(R.drawable.ic_wallet_card))
             }
             name_text_view.text = wallet.name
-            val balanceText = wallet.value.formatMoney() + wallet.currency.sign
+            val balanceText = wallet.balance.formatMoney() + wallet.currency.sign
             balance_text_view.text = balanceText
             if (transactions.isEmpty()) {
                 show_charts_image_button.visibility = View.GONE

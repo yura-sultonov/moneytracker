@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class WalletRepository @Inject constructor(private val db: AppDbHelper) {
 
-    fun getBalance(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne().value
+    fun getBalance(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne().balance
 
     fun setBalance(id: Long, value: Double) {
 //
@@ -19,7 +19,7 @@ class WalletRepository @Inject constructor(private val db: AppDbHelper) {
     fun getWallets() = db.wrapper.walletQueries.selectAll().executeAsList()
 
     fun addWallet(wallet: Wallet) {
-        db.wrapper.walletQueries.insertWallet(wallet.name, wallet.type, wallet.currency)
+        db.wrapper.walletQueries.insertWallet(wallet.name, wallet.type, wallet.currency, 0.0)
         Timber.i("Wallet added")
     }
 
@@ -28,6 +28,6 @@ class WalletRepository @Inject constructor(private val db: AppDbHelper) {
     }
 
     fun deleteWallet(id: Long) {
-        db.wrapper.walletQueries.deleteWallet(id)
+        db.wrapper.walletQueries.deleteWalletById(id)
     }
 }

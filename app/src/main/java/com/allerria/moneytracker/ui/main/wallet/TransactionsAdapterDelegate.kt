@@ -10,6 +10,7 @@ import com.allerria.moneytracker.entity.TransactionCategory
 import com.allerria.moneytracker.entity.TransactionType
 import com.allerria.moneytracker.extensions.formatMoney
 import com.allerria.moneytracker.extensions.inflate
+import com.allerria.moneytracker.extensions.toString
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import kotlinx.android.synthetic.main.item_transaction.view.*
 import java.text.SimpleDateFormat
@@ -55,7 +56,7 @@ class TransactionsAdapterDelegate : AdapterDelegate<MutableList<Transactions>>()
                         value_text_view.text = "-${value_text_view.text}"
                     }
                 }
-                date_text_view.text = transaction.date.time.toString()
+                date_text_view.text = transaction.date.time.toString("dd/MM/yyy")
             }
         }
     }
