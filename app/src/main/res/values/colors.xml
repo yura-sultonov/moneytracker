@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#222222</color>
+    <color name="colorPrimary">#ffdb4d</color>
+    <color name="textColorPrimary">#000000</color>
     <color name="colorPrimaryDark">#222222</color>
     <color name="colorAccent">#222222</color>
     <color name="colorWhite">#FFFFFF</color>
@@ -11,6 +12,7 @@
     <color name="progress_click">#00CC00</color>
     <color name="pin_background">#00CC00</color>
     <color name="pin_text">#ffffff</color>
-    <color name="bar_title_color">#B6BDD5</color>
+    <color name="bar_title_color">#000000</color>
     <color name="bar_title_selected_color">#FFFFFF</color>
+    <color name="colorRed">#fb3d4a</color>
 </resources>

@@ -5,18 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/balance_sum_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_20"
-        android:gravity="center_horizontal"
-        android:text="2000.00 $"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/balance_sum_descrive_tv"
+        android:id="@+id/balance_sum_describe_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_20"
@@ -24,7 +13,19 @@
         android:text="Обшая сумма всех балансов"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/balance_sum_tv" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/balance_sum_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:gravity="center_horizontal"
+        android:text="2000.00 $"
+        android:textSize="@dimen/info_balance_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/balance_sum_describe_tv" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -34,46 +35,50 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <TextView
-        android:id="@+id/month_exponse_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_20"
-        android:gravity="center_horizontal"
-        android:text="2000.00 $"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/balance_sum_descrive_tv" />
-
-    <TextView
         android:id="@+id/month_exponse_describe_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Расходы за месяц"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/month_exponse_tv" />
-
-    <TextView
-        android:id="@+id/month_income_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_20"
         android:gravity="center_horizontal"
-        android:text="2000.00 $"
+        android:text="Расходы за месяц"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintLeft_toLeftOf="@id/guideline"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/balance_sum_descrive_tv" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/balance_sum_tv" />
+
+    <TextView
+        android:id="@+id/month_exponse_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/info_balance_text_size"
+        android:text="2000.00 $"
+        android:textColor="@color/colorRed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/month_exponse_describe_tv" />
 
     <TextView
         android:id="@+id/month_income_describe_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:gravity="center_horizontal"
         android:text="Доходы за месяц"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toLeftOf="@id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/balance_sum_tv" />
+
+    <TextView
+        android:id="@+id/month_income_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorGreen"
+        android:text="2000.00 $"
+        android:textSize="@dimen/info_balance_text_size"
         app:layout_constraintLeft_toRightOf="@id/guideline"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/month_income_tv" />
+        app:layout_constraintTop_toBottomOf="@id/month_income_describe_tv" />
 
     <View
         android:layout_width="match_parent"
@@ -86,7 +91,7 @@
     <Button
         android:id="@+id/exponse_btn"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/height_64"
         android:background="@null"
         android:drawableTop="@drawable/ic_supply"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +101,7 @@
     <Button
         android:id="@+id/income_btn"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/height_64"
         android:background="@null"
         android:drawableTop="@drawable/ic_receive"
         app:layout_constraintBottom_toBottomOf="parent"
