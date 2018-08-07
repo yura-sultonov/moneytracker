@@ -10,8 +10,8 @@
         android:id="@+id/name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
         android:layout_marginTop="@dimen/margin_8"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,15 +20,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/name_text_view"
-        app:layout_constraintBaseline_toBaselineOf="@id/name_text_view" />
+        app:layout_constraintBaseline_toBaselineOf="@id/name_text_view"
+        app:layout_constraintStart_toEndOf="@id/name_text_view" />
 
     <TextView
         android:id="@+id/category_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8"
         android:layout_marginBottom="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,8 +39,8 @@
         android:id="@+id/currency_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:layout_marginTop="@dimen/margin_8"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,9 +48,9 @@
         android:id="@+id/value_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_8"
         android:textColor="@color/colorGreen"
         android:textSize="20sp"
-        android:layout_marginBottom="@dimen/margin_8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/currency_text_view"
         app:layout_constraintTop_toBottomOf="@id/currency_text_view" />

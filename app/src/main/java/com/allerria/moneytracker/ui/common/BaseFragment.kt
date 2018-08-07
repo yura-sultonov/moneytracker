@@ -12,7 +12,7 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 
-abstract class BaseFragment: MvpAppCompatFragment(), HasSupportFragmentInjector {
+abstract class BaseFragment : MvpAppCompatFragment(), HasSupportFragmentInjector {
     protected abstract val layoutRes: Int
     abstract val TAG: String
 

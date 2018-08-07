@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
-import com.allerria.moneytracker.entity.Transaction
-import com.allerria.moneytracker.entity.Wallet
+import com.allerria.moneytracker.Transactions
+import com.allerria.moneytracker.Wallets
 import com.allerria.moneytracker.entity.WalletType
 import com.allerria.moneytracker.extensions.formatMoney
 import com.allerria.moneytracker.ui.common.BaseFragment
@@ -23,15 +23,15 @@ class WalletFragment : BaseFragment(), WalletView {
     override val TAG = Screens.WALLET_SCREEN
 
     companion object {
-        fun newInstance(uid: String) = WalletFragment().apply {
-            Timber.d(uid)
-            arguments = Bundle().apply { putString(TAG, uid) }
+        fun newInstance(id: Long) = WalletFragment().apply {
+            Timber.d(id.toString())
+            arguments = Bundle().apply { putLong(TAG, id) }
         }
     }
 
     private val transactionsAdapter by lazy { TransactionsAdapter() }
 
-    lateinit var walletUid: String
+    private var walletId: Long = -1
 
     @Inject
     @InjectPresenter
@@ -44,7 +44,7 @@ class WalletFragment : BaseFragment(), WalletView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        walletUid = arguments?.getString(TAG) ?: ""
+        walletId = arguments?.getLong(TAG) ?: -1
         with(transactions_recycler_view) {
             adapter = transactionsAdapter
             setHasFixedSize(true)
@@ -73,23 +73,24 @@ class WalletFragment : BaseFragment(), WalletView {
 
     override fun onResume() {
         super.onResume()
-        presenter.initView(walletUid)
+        presenter.initView(walletId)
     }
 
-    override fun loadWallet(wallet: Wallet, transactions: List<Transaction>) {
+    override fun loadWallet(wallet: Wallets, transactions: List<Transactions>) {
         with(wallet_card_view) {
-            when(wallet.type) {
+            when (wallet.type) {
                 WalletType.CASH -> wallet_image_view.setImageDrawable(context.getDrawable(R.drawable.ic_wallet_cash))
                 WalletType.CARD -> wallet_image_view.setImageDrawable(context.getDrawable(R.drawable.ic_wallet_card))
             }
             name_text_view.text = wallet.name
-            balance_text_view.text = wallet.value.formatMoney() + wallet.currency.sign
+            val balanceText = wallet.balance.formatMoney() + wallet.currency.sign
+            balance_text_view.text = balanceText
             if (transactions.isEmpty()) {
                 show_charts_image_button.visibility = View.GONE
             } else {
                 show_charts_image_button.visibility = View.VISIBLE
                 show_charts_image_button.setOnClickListener {
-                    val walletChartDialogFragment = WalletChartDialogFragment.newInstance(wallet.uid)
+                    val walletChartDialogFragment = WalletChartDialogFragment.newInstance(wallet.id)
                     walletChartDialogFragment.show(childFragmentManager, Screens.WALLET_CHART_SCREEN)
                 }
             }

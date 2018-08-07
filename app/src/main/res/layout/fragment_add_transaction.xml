@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,12 +29,12 @@
             android:layout_marginEnd="@dimen/margin_20"
             android:layout_marginStart="@dimen/margin_20"
             android:layout_marginTop="@dimen/margin_8"
-            tools:listitem="@android:layout/simple_selectable_list_item"
             android:entries="@array/transaction_types"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_type_text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/transaction_type_text_view"
+            tools:listitem="@android:layout/simple_selectable_list_item" />
 
         <TextView
             android:id="@+id/transaction_category_text_view"
@@ -80,8 +80,8 @@
             android:layout_marginStart="@dimen/margin_20"
             android:layout_marginTop="@dimen/margin_8"
             android:ems="10"
-            android:maxLength="14"
             android:inputType="numberDecimal"
+            android:maxLength="14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/transaction_value_text_view" />

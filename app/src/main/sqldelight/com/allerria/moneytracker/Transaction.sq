@@ -1,0 +1,46 @@
+import com.allerria.moneytracker.entity.Currency;
+import com.allerria.moneytracker.entity.TransactionType;
+import java.util.Calendar;
+
+CREATE TABLE IF NOT EXISTS transactions (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    type TEXT AS TransactionType NOT NULL,
+    category TEXT NOT NULL DEFAULT '',
+    currency TEXT AS Currency NOT NULL,
+    amount REAL NOT NULL,
+    walletId INTEGER NOT NULL,
+    details TEXT NOT NULL DEFAULT '',
+    date INTEGER AS Calendar NOT NULL,
+    FOREIGN KEY(walletId) REFERENCES wallets(id)
+);
+
+insertTransaction:
+INSERT INTO transactions(type, category, currency, amount, walletId, details, date) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectAll:
+SELECT * FROM transactions ORDER BY id DESC;
+
+selectAllByWalletId:
+SELECT * FROM transactions WHERE walletId = ? ORDER BY id DESC;
+
+selectAllByCategory:
+SELECT * FROM transactions WHERE category = ? ORDER BY id DESC;
+
+selectAllByTransactionType:
+SELECT * FROM transactions WHERE type = ? ORDER BY id DESC;
+
+selectAllByCurrency:
+SELECT * FROM transactions WHERE currency = ? ORDER BY id DESC;
+
+selectAllInInterval:
+SELECT * FROM transactions WHERE date >= ? AND date <= ? ORDER BY id DESC;
+
+selectAllFromDate:
+SELECT * FROM transactions WHERE date >= ? ORDER BY id DESC;
+
+deleteAllByWalletId:
+DELETE FROM transactions WHERE walletId = ?;
+
+deleteAll:
+DELETE FROM transactions;
+

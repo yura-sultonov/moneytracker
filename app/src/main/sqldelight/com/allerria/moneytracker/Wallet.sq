@@ -1,0 +1,30 @@
+import com.allerria.moneytracker.entity.Currency;
+import com.allerria.moneytracker.entity.WalletType;
+import java.lang.Double;
+
+CREATE TABLE IF NOT EXISTS wallets (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    type TEXT AS WalletType NOT NULL,
+    currency TEXT AS Currency NOT NULL,
+    balance REAL AS Double NOT NULL
+
+);
+
+insertWallet:
+INSERT INTO wallets(name, type, currency, balance) VALUES (?, ?, ?, ?);
+
+selectAll:
+SELECT * FROM wallets;
+
+selectWalletById:
+SELECT * FROM wallets WHERE id = ?;
+
+updateValue:
+UPDATE wallets SET balance = ? WHERE id = ?;
+
+deleteWalletById:
+DELETE FROM wallets WHERE id = ?;
+
+deleteAllWallet:
+DELETE FROM wallets;

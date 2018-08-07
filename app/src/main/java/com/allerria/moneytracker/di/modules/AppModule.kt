@@ -2,9 +2,8 @@ package com.allerria.moneytracker.di.modules
 
 import android.content.Context
 import com.allerria.moneytracker.MoneyTrackerApp
+import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
 import com.allerria.moneytracker.model.data.datasource.local.CurrencyRateCache
-import com.allerria.moneytracker.model.data.datasource.local.TransactionsCache
-import com.allerria.moneytracker.model.data.datasource.local.WalletCache
 import com.allerria.moneytracker.model.data.datasource.remote.CurrencyRateApi
 import com.allerria.moneytracker.model.data.repository.CurrencyRateRepository
 import com.allerria.moneytracker.model.data.repository.TransactionsRepository
@@ -29,11 +28,11 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideWalletRepository(walletCache: WalletCache): WalletRepository = WalletRepository(walletCache)
+    fun provideWalletRepository(appDbHelper: AppDbHelper): WalletRepository = WalletRepository(appDbHelper)
 
     @Provides
     @Singleton
-    fun provideTransactionsRepository(transactionsCache: TransactionsCache): TransactionsRepository = TransactionsRepository(transactionsCache)
+    fun provideTransactionsRepository(appDbHelper: AppDbHelper): TransactionsRepository = TransactionsRepository(appDbHelper)
 
     @Provides
     @Singleton
@@ -41,10 +40,6 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideWalletCache(context: Context): WalletCache = WalletCache(context)
-
-    @Provides
-    @Singleton
-    fun provideTransactionCache(): TransactionsCache = TransactionsCache()
+    fun provideDbHelper(context: Context): AppDbHelper = AppDbHelper(context)
 
 }

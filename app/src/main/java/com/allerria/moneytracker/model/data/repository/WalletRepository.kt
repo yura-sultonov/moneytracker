@@ -1,30 +1,31 @@
 package com.allerria.moneytracker.model.data.repository
 
-import com.allerria.moneytracker.R
-import com.allerria.moneytracker.entity.Currency
 import com.allerria.moneytracker.entity.Wallet
-import com.allerria.moneytracker.entity.WalletType
-import com.allerria.moneytracker.model.data.datasource.local.WalletCache
-import java.util.*
+import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
 import javax.inject.Inject
 
-class WalletRepository @Inject constructor(private val walletCache: WalletCache) {
+class WalletRepository @Inject constructor(private val db: AppDbHelper) {
 
-    fun getBalance(uid: String) = walletCache.wallets.find { it.uid == uid }!!
+    fun getBalance(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne().balance
 
-    fun setBalance(uid: String, value: Double) {
-        walletCache.wallets.find { it.uid == uid }!!.value = value
+    fun setBalance(id: Long, value: Double) {
+        db.wrapper.walletQueries.updateValue(value, id)
     }
 
-    fun getWallet(uid: String) = walletCache.wallets.find { it.uid == uid }
+    fun getWalletById(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne()
 
-    fun getWallets() = walletCache.wallets
+    fun getWallets() = db.wrapper.walletQueries.selectAll().executeAsList()
 
     fun addWallet(wallet: Wallet) {
-        walletCache.wallets.add(wallet)
+        db.wrapper.walletQueries.insertWallet(wallet.name, wallet.type, wallet.currency, wallet.value)
     }
 
     fun clear() {
-        walletCache.wallets.clear()
+        db.wrapper.transactionQueries.deleteAll()
+        db.wrapper.walletQueries.deleteAllWallet()
+    }
+
+    fun deleteWallet(id: Long) {
+        db.wrapper.walletQueries.deleteWalletById(id)
     }
 }

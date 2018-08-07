@@ -7,8 +7,8 @@ import com.allerria.moneytracker.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import javax.inject.Inject
 import timber.log.Timber
+import javax.inject.Inject
 
 
 class MoneyTrackerApp : Application(), HasActivityInjector {
@@ -19,7 +19,7 @@ class MoneyTrackerApp : Application(), HasActivityInjector {
     }
 
     @Inject
-    lateinit var mActivityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
@@ -40,7 +40,7 @@ class MoneyTrackerApp : Application(), HasActivityInjector {
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
-        return mActivityDispatchingAndroidInjector
+        return activityDispatchingAndroidInjector
     }
 
 }

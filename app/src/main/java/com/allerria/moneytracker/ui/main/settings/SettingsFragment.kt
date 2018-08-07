@@ -5,10 +5,8 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import com.allerria.moneytracker.MoneyTrackerApp
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
-import com.allerria.moneytracker.model.interactor.WalletInteractor
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter

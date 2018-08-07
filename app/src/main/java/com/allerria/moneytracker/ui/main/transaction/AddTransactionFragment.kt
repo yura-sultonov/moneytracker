@@ -9,17 +9,12 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
+import com.allerria.moneytracker.Wallets
 import com.allerria.moneytracker.entity.*
-import com.allerria.moneytracker.model.interactor.WalletInteractor
-import com.allerria.moneytracker.ui.common.BaseDialogFragment
 import com.allerria.moneytracker.ui.common.BaseFragment
-import com.allerria.moneytracker.ui.main.balance.BalanceFragment
-import com.arellomobile.mvp.MvpDialogFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import kotlinx.android.synthetic.main.fragment_about.view.*
 import kotlinx.android.synthetic.main.fragment_add_transaction.*
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -27,7 +22,18 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
 
     override val TAG = Screens.ADD_TRANSACTION_SCREEN
     override val layoutRes = R.layout.fragment_add_transaction
-    lateinit var localWallets: List<Wallet>
+    lateinit var localWallets: List<Wallets>
+    lateinit var transactionType: TransactionType
+
+    companion object {
+        fun newInstance(transactionType: TransactionType): AddTransactionFragment {
+            val fragment = AddTransactionFragment()
+            val args = Bundle()
+            args.putString("type", transactionType.toString())
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     @Inject
     @InjectPresenter
@@ -41,7 +47,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         transaction_type_spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) { }
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {}
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 lateinit var adapter: ArrayAdapter<String>
@@ -52,12 +58,12 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
                 transaction_category_spinner.adapter = adapter
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?){ }
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
         presenter.initWallets()
         add_transaction_button.setOnClickListener {
             val transaction = createTransaction()
-            if (transaction.money.value < 0) {
+            if (transaction.amount < 0) {
                 Toast.makeText(this@AddTransactionFragment.context, R.string.fill_value, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this@AddTransactionFragment.context, R.string.success, Toast.LENGTH_LONG).show()
@@ -73,7 +79,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         super.onDestroy()
     }
 
-    override fun setWallets(wallets: List<Wallet>) {
+    override fun setWallets(wallets: kotlin.collections.List<com.allerria.moneytracker.Wallets>) {
         transaction_wallet_spinner.adapter = ArrayAdapter<String>(context, android.R.layout.simple_selectable_list_item, wallets.map { it ->
             val type = when (it.type) {
                 WalletType.CARD -> getString(R.string.card)
@@ -107,7 +113,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         }
         val details: String = transaction_details_edit_text.text.toString()
 
-        val wallet: Wallet = localWallets.find {
+        val wallet: Wallets = localWallets.find {
             val type = when (it.type) {
                 WalletType.CARD -> getString(R.string.card)
                 WalletType.CASH -> getString(R.string.cash)
@@ -116,6 +122,6 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         }!!
         val transactionValue = if (transaction_value_edit_text.text.toString().isNotEmpty()) transaction_value_edit_text.text.toString() else "-1.0"
         money = Money(wallet.currency, transactionValue.toDouble())
-        return Transaction(UUID.randomUUID().toString(), transactionType, transactionCategory, money, wallet.uid, details, Calendar.getInstance().time)
+        return Transaction(10, transactionType, transactionCategory.toString(), money.currency, money.value, wallet.id, details, Calendar.getInstance().time)
     }
 }

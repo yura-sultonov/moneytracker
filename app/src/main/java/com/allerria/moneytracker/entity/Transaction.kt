@@ -2,12 +2,13 @@ package com.allerria.moneytracker.entity
 
 import java.util.*
 
-data class Transaction(
-        val uid: String,
+class Transaction(
+        val id: Long,
         val type: TransactionType,
-        val category: TransactionCategory,
-        val money: Money,
-        val walletUid: String,
+        val category: String,
+        val currency: Currency,
+        val amount: Double,
+        val walletId: Long,
         val details: String,
         val date: Date
 )
