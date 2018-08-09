@@ -125,8 +125,8 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     }
 
     private fun isRootMenu(tag: String): Boolean {
-        return  tag == Screens.INFO_SCREEN || tag == Screens.BALANCE_SCREEN &&
-                tag == Screens.SETTINGS_SCREEN && tag == Screens.ABOUT_SCREEN &&
+        return  tag == Screens.INFO_SCREEN || tag == Screens.BALANCE_SCREEN ||
+                tag == Screens.SETTINGS_SCREEN || tag == Screens.ABOUT_SCREEN ||
                 tag == Screens.TEMPLATES_SCREEN
     }
 

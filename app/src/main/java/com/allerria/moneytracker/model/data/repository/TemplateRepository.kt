@@ -1,5 +1,6 @@
 package com.allerria.moneytracker.model.data.repository
 
+import com.allerria.moneytracker.entity.Template
 import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
 import java.util.*
 import javax.inject.Inject
@@ -22,6 +23,10 @@ class TemplateRepository @Inject constructor(private val db: AppDbHelper) {
 
     fun deleteAll(){
         db.wrapper.templateQueries.deleteAll()
+    }
+
+    fun insertTemplate(template: Template) {
+        db.wrapper.templateQueries.insertTemplate(template.type, template.enabled, template.transactionTypee, template.transactionCategory, template.transactionCurrency, template.transactionAmount, template.transactionWalletId, GregorianCalendar())
     }
 
 }

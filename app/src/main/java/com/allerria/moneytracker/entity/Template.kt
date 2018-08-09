@@ -3,7 +3,6 @@ package com.allerria.moneytracker.entity
 import java.util.*
 
 class Template(
-        val id: Long,
         val type: TemplateType,
         val enabled: Boolean,
         val transactionTypee: TransactionType,
