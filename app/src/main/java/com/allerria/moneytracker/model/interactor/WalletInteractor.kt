@@ -51,4 +51,8 @@ class WalletInteractor @Inject constructor(private val converterInteractor: Conv
     fun wipeData() {
         walletRepository.clear()
     }
+
+    fun getIncomeCategories(): List<String> = transactionsRepository.getIncomeCategories()
+
+    fun getExpenseCategories(): List<String> = transactionsRepository.getExpenseCategories()
 }

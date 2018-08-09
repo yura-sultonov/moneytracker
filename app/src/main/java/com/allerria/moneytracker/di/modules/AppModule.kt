@@ -6,6 +6,7 @@ import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
 import com.allerria.moneytracker.model.data.datasource.local.CurrencyRateCache
 import com.allerria.moneytracker.model.data.datasource.remote.CurrencyRateApi
 import com.allerria.moneytracker.model.data.repository.CurrencyRateRepository
+import com.allerria.moneytracker.model.data.repository.TemplateRepository
 import com.allerria.moneytracker.model.data.repository.TransactionsRepository
 import com.allerria.moneytracker.model.data.repository.WalletRepository
 import dagger.Module
@@ -29,6 +30,10 @@ class AppModule {
     @Provides
     @Singleton
     fun provideWalletRepository(appDbHelper: AppDbHelper): WalletRepository = WalletRepository(appDbHelper)
+
+    @Provides
+    @Singleton
+    fun provideTemplateRepository(appDbHelper: AppDbHelper): TemplateRepository = TemplateRepository(appDbHelper)
 
     @Provides
     @Singleton

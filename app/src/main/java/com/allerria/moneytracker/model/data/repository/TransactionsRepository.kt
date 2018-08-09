@@ -30,4 +30,8 @@ class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
     fun deleteAllByWalletId(id: Long) {
         db.wrapper.transactionQueries.deleteAllByWalletId(id)
     }
+
+    fun getIncomeCategories(): List<String> = db.wrapper.transactionQueries.selectAllCategoriesByType(TransactionType.INCOME).executeAsList()
+
+    fun getExpenseCategories(): List<String> = db.wrapper.transactionQueries.selectAllCategoriesByType(TransactionType.EXPENSE).executeAsList()
 }

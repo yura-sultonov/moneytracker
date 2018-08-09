@@ -4,6 +4,7 @@ import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.content.Context
 import com.allerria.moneytracker.QueryWrapper
+import com.allerria.moneytracker.Templates
 import com.allerria.moneytracker.Transactions
 import com.allerria.moneytracker.Wallets
 import com.squareup.sqldelight.EnumColumnAdapter
@@ -30,6 +31,12 @@ open class AppDbHelper @Inject constructor(context: Context) : SupportSQLiteOpen
                 walletsAdapter = Wallets.Adapter(
                         typeAdapter = EnumColumnAdapter(),
                         currencyAdapter = EnumColumnAdapter()
+                ),
+                templatesAdapter = Templates.Adapter(
+                        typeAdapter = EnumColumnAdapter(),
+                        transactionTypeAdapter = EnumColumnAdapter(),
+                        transactionCurrencyAdapter = EnumColumnAdapter(),
+                        lastRunDateAdapter = DateAdapter()
                 )
         )
     }

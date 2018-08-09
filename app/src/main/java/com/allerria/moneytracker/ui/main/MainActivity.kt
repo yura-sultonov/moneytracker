@@ -2,6 +2,7 @@ package com.allerria.moneytracker.ui.main
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -9,6 +10,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
+import android.view.View
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.ui.common.BaseActivity
@@ -23,6 +25,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import timber.log.Timber
@@ -50,13 +53,16 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            router.newRootScreen(Screens.INFO_SCREEN)
+            router.newRootScreen(Screens.BALANCE_SCREEN)
         }
         initView()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_info -> {
+                router.navigateTo(Screens.INFO_SCREEN)
+            }
             R.id.nav_balance -> {
                 router.navigateTo(Screens.BALANCE_SCREEN)
             }
@@ -81,13 +87,25 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
-                if ((supportFragmentManager.fragments.first() as BaseFragment).TAG != Screens.INFO_SCREEN) {
+                val tag = (supportFragmentManager.fragments.first() as BaseFragment).TAG
+                if (tag != Screens.INFO_SCREEN && tag != Screens.BALANCE_SCREEN && tag != Screens.SETTINGS_SCREEN && tag != Screens.ABOUT_SCREEN) {
                     router.exit()
                 } else {
                     drawer_layout.openDrawer(GravityCompat.START)
                 }
             }
         }
+        // drawer animation
+        drawer_layout.drawerElevation = 0F
+        drawer_layout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                super.onDrawerSlide(drawerView, slideOffset)
+                val moveFactor = nav_view.width * slideOffset
+                main_container.translationX = moveFactor
+                main_container.scaleX = 1 - slideOffset / 4
+                main_container.scaleY = 1 - slideOffset / 4
+            }
+        })
         supportFragmentManager.addOnBackStackChangedListener {
             onChangeFragment((supportFragmentManager.fragments.first() as BaseFragment).TAG)
         }
@@ -101,11 +119,33 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
 
     private fun onChangeFragment(tag: String) {
         Timber.d(tag)
-        if (tag == Screens.INFO_SCREEN || tag == "init") {
+        var isRoot = false
+        when (tag) {
+            "init" -> {
+                nav_view.menu.getItem(0).isChecked = true
+                isRoot = true
+            }
+            Screens.BALANCE_SCREEN -> {
+                nav_view.menu.getItem(0).isChecked = true
+                isRoot = true
+            }
+            Screens.INFO_SCREEN -> {
+                nav_view.menu.getItem(1).isChecked = true
+                isRoot = true
+            }
+            Screens.SETTINGS_SCREEN -> {
+                nav_view.menu.getItem(2).isChecked = true
+                isRoot = true
+            }
+            Screens.ABOUT_SCREEN -> {
+                nav_view.menu.getItem(3).isChecked = true
+                isRoot = true
+            }
+        }
+        if (isRoot) {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
             toggle.syncState()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            nav_view.menu.getItem(0).isChecked = true
         } else {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -116,7 +156,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             Screens.ABOUT_SCREEN -> R.string.about
             Screens.ADD_TRANSACTION_SCREEN -> R.string.add_transaction
             Screens.ADD_WALLET_SCREEN -> R.string.add_wallet
-            Screens.INFO_SCREEN -> R.string.main
+            Screens.INFO_SCREEN -> R.string.info
             else -> R.string.balance
         }
 

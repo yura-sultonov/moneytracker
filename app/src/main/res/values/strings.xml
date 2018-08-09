@@ -44,6 +44,7 @@
     <string name="initial_balance">Initial balance</string>
     <string name="add_wallet_in_balance">There is 2 ways to add Wallet: from settings or via button in right bottom corner</string>
     <string name="main">Main</string>
+    <string name="info">Details</string>
 
     <string-array name="currencies">
         <item>@string/rub</item>

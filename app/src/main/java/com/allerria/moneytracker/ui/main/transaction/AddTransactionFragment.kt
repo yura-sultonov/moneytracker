@@ -50,12 +50,7 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {}
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                lateinit var adapter: ArrayAdapter<String>
-                when (transaction_type_spinner.selectedItem) {
-                    getString(R.string.expense) -> adapter = ArrayAdapter(context, android.R.layout.simple_selectable_list_item, resources.getStringArray(R.array.transaction_expense_categories))
-                    getString(R.string.income) -> adapter = ArrayAdapter(context, android.R.layout.simple_selectable_list_item, resources.getStringArray(R.array.transaction_income_categories))
-                }
-                transaction_category_spinner.adapter = adapter
+                presenter.typeTransactionChange(transaction_type_spinner.selectedItemPosition)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}
@@ -90,27 +85,20 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         localWallets = wallets
     }
 
+    override fun setCategories(categories: List<String>) {
+        val adapter: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, categories)
+        transaction_category_autocomplete.setAdapter(adapter)
+    }
+
     private fun createTransaction(): Transaction {
         lateinit var transactionType: TransactionType
-        lateinit var transactionCategory: TransactionCategory
         lateinit var money: Money
         when (transaction_type_spinner.selectedItem.toString()) {
             getString(R.string.expense) -> transactionType = TransactionType.EXPENSE
             getString(R.string.income) -> transactionType = TransactionType.INCOME
             else -> TransactionType.EXPENSE
         }
-        when (transaction_category_spinner.selectedItem.toString()) {
-            getString(R.string.auto) -> transactionCategory = TransactionCategory.AUTO
-            getString(R.string.clothing) -> transactionCategory = TransactionCategory.CLOTHING
-            getString(R.string.house) -> transactionCategory = TransactionCategory.HOUSE
-            getString(R.string.cafe_and_restaurants) -> transactionCategory = TransactionCategory.CAFE_AND_RESTAURANT
-            getString(R.string.entertainment) -> transactionCategory = TransactionCategory.ENTERTAINMENT
-            getString(R.string.health) -> transactionCategory = TransactionCategory.HEALTH
-            getString(R.string.salary) -> transactionCategory = TransactionCategory.SALARY
-            getString(R.string.gift) -> transactionCategory = TransactionCategory.GIFT
-            getString(R.string.other) -> transactionCategory = TransactionCategory.OTHER
-            else -> TransactionCategory.OTHER
-        }
+        val transactionCategory = transaction_category_autocomplete.text.toString()
         val details: String = transaction_details_edit_text.text.toString()
 
         val wallet: Wallets = localWallets.find {
@@ -122,6 +110,6 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         }!!
         val transactionValue = if (transaction_value_edit_text.text.toString().isNotEmpty()) transaction_value_edit_text.text.toString() else "-1.0"
         money = Money(wallet.currency, transactionValue.toDouble())
-        return Transaction(10, transactionType, transactionCategory.toString(), money.currency, money.value, wallet.id, details, Calendar.getInstance().time)
+        return Transaction(10, transactionType, transactionCategory, money.currency, money.value, wallet.id, details, Calendar.getInstance().time)
     }
 }

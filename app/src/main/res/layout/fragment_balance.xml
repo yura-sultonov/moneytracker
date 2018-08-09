@@ -18,7 +18,7 @@
         android:id="@+id/balance_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"></android.support.v4.view.ViewPager>
+        android:layout_alignParentTop="true" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/balance_tab_layout"
@@ -36,9 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/colorPrimary"
         android:layout_marginBottom="@dimen/margin_20"
         android:layout_marginRight="@dimen/margin_20"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_add" />
 
 </RelativeLayout>
 

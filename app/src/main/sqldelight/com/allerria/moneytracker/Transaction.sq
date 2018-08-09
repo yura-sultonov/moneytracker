@@ -38,6 +38,9 @@ SELECT * FROM transactions WHERE date >= ? AND date <= ? ORDER BY id DESC;
 selectAllFromDate:
 SELECT * FROM transactions WHERE date >= ? ORDER BY id DESC;
 
+selectAllCategoriesByType:
+SELECT DISTINCT category FROM transactions WHERE type = ?;
+
 deleteAllByWalletId:
 DELETE FROM transactions WHERE walletId = ?;
 
