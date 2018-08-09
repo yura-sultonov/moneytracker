@@ -99,7 +99,6 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
             else -> TransactionType.EXPENSE
         }
         val transactionCategory = transaction_category_autocomplete.text.toString()
-        val details: String = transaction_details_edit_text.text.toString()
 
         val wallet: Wallets = localWallets.find {
             val type = when (it.type) {
@@ -110,6 +109,6 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         }!!
         val transactionValue = if (transaction_value_edit_text.text.toString().isNotEmpty()) transaction_value_edit_text.text.toString() else "-1.0"
         money = Money(wallet.currency, transactionValue.toDouble())
-        return Transaction(10, transactionType, transactionCategory, money.currency, money.value, wallet.id, details, Calendar.getInstance().time)
+        return Transaction(10, transactionType, transactionCategory, money.currency, money.value, wallet.id, Calendar.getInstance().time)
     }
 }

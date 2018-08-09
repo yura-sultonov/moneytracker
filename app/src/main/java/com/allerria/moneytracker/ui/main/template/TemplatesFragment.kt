@@ -8,6 +8,7 @@ import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_balance.*
+import kotlinx.android.synthetic.main.fragment_templates.*
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -30,7 +31,7 @@ class TemplatesFragment : BaseFragment(), TemplatesView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.initTemplates()
-        add_transaction_button.setOnClickListener {
+        add_template_button.setOnClickListener {
             router.navigateTo(Screens.ADD_TEMPLATE_SCREEN)
         }
     }

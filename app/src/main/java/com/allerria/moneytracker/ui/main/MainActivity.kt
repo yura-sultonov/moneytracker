@@ -20,6 +20,8 @@ import com.allerria.moneytracker.ui.main.about.AboutFragment
 import com.allerria.moneytracker.ui.main.balance.BalanceFragment
 import com.allerria.moneytracker.ui.main.info.InfoFragment
 import com.allerria.moneytracker.ui.main.settings.SettingsFragment
+import com.allerria.moneytracker.ui.main.template.AddTemplateFragment
+import com.allerria.moneytracker.ui.main.template.TemplatesFragment
 import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
 import com.allerria.moneytracker.ui.main.wallet.AddWalletFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -65,6 +67,9 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             R.id.nav_info -> {
                 router.navigateTo(Screens.INFO_SCREEN)
             }
+            R.id.nav_template -> {
+                router.navigateTo(Screens.TEMPLATES_SCREEN)
+            }
             R.id.nav_balance -> {
                 router.navigateTo(Screens.BALANCE_SCREEN)
             }
@@ -90,7 +95,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
                 val tag = (supportFragmentManager.fragments.first() as BaseFragment).TAG
-                if (tag != Screens.INFO_SCREEN && tag != Screens.BALANCE_SCREEN && tag != Screens.SETTINGS_SCREEN && tag != Screens.ABOUT_SCREEN) {
+                if (!isRootMenu(tag)) {
                     router.exit()
                 } else {
                     drawer_layout.openDrawer(GravityCompat.START)
@@ -119,6 +124,12 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
         }
     }
 
+    private fun isRootMenu(tag: String): Boolean {
+        return  tag == Screens.INFO_SCREEN || tag == Screens.BALANCE_SCREEN &&
+                tag == Screens.SETTINGS_SCREEN && tag == Screens.ABOUT_SCREEN &&
+                tag == Screens.TEMPLATES_SCREEN
+    }
+
     private fun onChangeFragment(tag: String) {
         Timber.d(tag)
         var isRoot = false
@@ -131,16 +142,20 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                 nav_view.menu.getItem(0).isChecked = true
                 isRoot = true
             }
-            Screens.INFO_SCREEN -> {
+            Screens.TEMPLATES_SCREEN -> {
                 nav_view.menu.getItem(1).isChecked = true
                 isRoot = true
             }
-            Screens.SETTINGS_SCREEN -> {
+            Screens.INFO_SCREEN -> {
                 nav_view.menu.getItem(2).isChecked = true
                 isRoot = true
             }
-            Screens.ABOUT_SCREEN -> {
+            Screens.SETTINGS_SCREEN -> {
                 nav_view.menu.getItem(3).isChecked = true
+                isRoot = true
+            }
+            Screens.ABOUT_SCREEN -> {
+                nav_view.menu.getItem(4).isChecked = true
                 isRoot = true
             }
         }
@@ -159,6 +174,8 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             Screens.ADD_TRANSACTION_SCREEN -> R.string.add_transaction
             Screens.ADD_WALLET_SCREEN -> R.string.add_wallet
             Screens.INFO_SCREEN -> R.string.info
+            Screens.TEMPLATES_SCREEN -> R.string.templates
+            Screens.ADD_TEMPLATE_SCREEN -> R.string.add_template
             else -> R.string.balance
         }
 
@@ -176,6 +193,8 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
             Screens.ADD_TRANSACTION_SCREEN -> AddTransactionFragment()
             Screens.ADD_WALLET_SCREEN -> AddWalletFragment()
             Screens.INFO_SCREEN -> InfoFragment()
+            Screens.TEMPLATES_SCREEN -> TemplatesFragment()
+            Screens.ADD_TEMPLATE_SCREEN -> AddTemplateFragment()
             else -> null
         }
 

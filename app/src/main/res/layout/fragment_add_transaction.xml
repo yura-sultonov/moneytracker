@@ -111,33 +111,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/transaction_wallet_text_view" />
 
-        <TextView
-            android:id="@+id/transaction_details_text_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_20"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_20"
-            android:text="@string/details"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_wallet_spinner" />
-
-        <EditText
-            android:id="@+id/transaction_details_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_20"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_8"
-            android:ems="10"
-            android:inputType="textShortMessage"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_details_text_view" />
-
         <Button
             android:id="@+id/add_transaction_button"
             style="@android:style/Widget.Material.Button.Borderless.Colored"
@@ -145,10 +118,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_20"
             android:text="@string/create"
+            android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaction_details_edit_text" />
+            app:layout_constraintTop_toBottomOf="@+id/transaction_wallet_spinner" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

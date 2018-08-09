@@ -12,13 +12,12 @@ CREATE TABLE IF NOT EXISTS templates (
     transactionCurrency TEXT AS Currency NOT NULL,
     transactionAmount REAL NOT NULL,
     transactionWalletId INTEGER NOT NULL,
-    transactionDetails TEXT NOT NULL DEFAULT '',
     lastRunDate INTEGER AS Calendar NOT NULL,
     FOREIGN KEY(transactionWalletId) REFERENCES wallets(id)
 );
 
 insertTemplate:
-INSERT INTO templates(type, enabled, transactionType, transactionCategory, transactionCurrency, transactionAmount, transactionWalletId, transactionDetails, lastRunDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO templates(type, enabled, transactionType, transactionCategory, transactionCurrency, transactionAmount, transactionWalletId, lastRunDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
 selectAll:
 SELECT * FROM templates ORDER BY id DESC;

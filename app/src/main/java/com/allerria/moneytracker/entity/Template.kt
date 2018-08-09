@@ -11,6 +11,5 @@ class Template(
         val transactionCurrency: Currency,
         val transactionAmount: Double,
         val transactionWalletId: Long,
-        val transactionDetails: String,
         val lastRunDate: Date
 )

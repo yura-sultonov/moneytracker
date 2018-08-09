@@ -14,7 +14,7 @@ class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
     fun getTransactionsByType(transactionType: TransactionType) = db.wrapper.transactionQueries.selectAllByTransactionType(transactionType).executeAsList()
 
     fun addTransaction(transaction: Transaction) {
-        db.wrapper.transactionQueries.insertTransaction(transaction.type, transaction.category, transaction.currency, transaction.amount, transaction.walletId, transaction.details, GregorianCalendar())
+        db.wrapper.transactionQueries.insertTransaction(transaction.type, transaction.category, transaction.currency, transaction.amount, transaction.walletId, GregorianCalendar())
     }
 
     fun getTransactionsWalletId(id: Long) = db.wrapper.transactionQueries.selectAllByWalletId(id).executeAsList()

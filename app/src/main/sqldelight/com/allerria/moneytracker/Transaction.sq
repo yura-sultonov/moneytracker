@@ -9,13 +9,12 @@ CREATE TABLE IF NOT EXISTS transactions (
     currency TEXT AS Currency NOT NULL,
     amount REAL NOT NULL,
     walletId INTEGER NOT NULL,
-    details TEXT NOT NULL DEFAULT '',
     date INTEGER AS Calendar NOT NULL,
     FOREIGN KEY(walletId) REFERENCES wallets(id)
 );
 
 insertTransaction:
-INSERT INTO transactions(type, category, currency, amount, walletId, details, date) VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT INTO transactions(type, category, currency, amount, walletId, date) VALUES (?, ?, ?, ?, ?, ?);
 
 selectAll:
 SELECT * FROM transactions ORDER BY id DESC;
