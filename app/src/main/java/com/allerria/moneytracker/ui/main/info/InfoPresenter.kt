@@ -13,5 +13,4 @@ class InfoPresenter @Inject constructor(private val infoInteractor: InfoInteract
         viewState.setMonthExpense("- ${infoInteractor.getSignOfCurrentCurrency()} ${infoInteractor.getSumOfMonthExpense()}")
         viewState.setMonthIncome("+ ${infoInteractor.getSignOfCurrentCurrency()} ${infoInteractor.getSumOfMonthIncome()}")
     }
-
 }

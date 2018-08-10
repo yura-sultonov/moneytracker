@@ -7,14 +7,14 @@ import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
 import java.util.*
 import javax.inject.Inject
 
-class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
+open class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
 
     fun getTransactions() = db.wrapper.transactionQueries.selectAll().executeAsList()
 
     fun getTransactionsByType(transactionType: TransactionType) = db.wrapper.transactionQueries.selectAllByTransactionType(transactionType).executeAsList()
 
     fun addTransaction(transaction: Transaction) {
-        db.wrapper.transactionQueries.insertTransaction(transaction.type, transaction.category, transaction.currency, transaction.amount, transaction.walletId, transaction.details, GregorianCalendar())
+        db.wrapper.transactionQueries.insertTransaction(transaction.type, transaction.category, transaction.currency, transaction.amount, transaction.walletId, GregorianCalendar())
     }
 
     fun getTransactionsWalletId(id: Long) = db.wrapper.transactionQueries.selectAllByWalletId(id).executeAsList()
@@ -30,4 +30,8 @@ class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
     fun deleteAllByWalletId(id: Long) {
         db.wrapper.transactionQueries.deleteAllByWalletId(id)
     }
+
+    fun getIncomeCategories(): List<String> = db.wrapper.transactionQueries.selectAllCategoriesByType(TransactionType.INCOME).executeAsList()
+
+    fun getExpenseCategories(): List<String> = db.wrapper.transactionQueries.selectAllCategoriesByType(TransactionType.EXPENSE).executeAsList()
 }

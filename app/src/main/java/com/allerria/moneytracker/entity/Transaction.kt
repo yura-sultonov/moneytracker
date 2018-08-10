@@ -9,6 +9,5 @@ class Transaction(
         val currency: Currency,
         val amount: Double,
         val walletId: Long,
-        val details: String,
         val date: Date
 )

@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-class ConverterInteractor @Inject constructor(private val currencyRateRepository: CurrencyRateRepository) {
+open class ConverterInteractor @Inject constructor(private val currencyRateRepository: CurrencyRateRepository) {
     fun convert(money: Money): List<Money> {
         return currencyRateRepository.getCurrenciesRateFromCache().map { Money(it.currency, convert(money, it.currency).value) }
     }
@@ -37,5 +37,5 @@ class ConverterInteractor @Inject constructor(private val currencyRateRepository
                 })
     }
 
-    private fun getCurrencyRate(currency: Currency): CurrencyRate = currencyRateRepository.getCurrenciesRateFromCache().find { it.currency == currency }!!
+    fun getCurrencyRate(currency: Currency): CurrencyRate = currencyRateRepository.getCurrenciesRateFromCache().find { it.currency == currency }!!
 }

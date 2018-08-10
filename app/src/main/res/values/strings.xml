@@ -44,6 +44,13 @@
     <string name="initial_balance">Initial balance</string>
     <string name="add_wallet_in_balance">There is 2 ways to add Wallet: from settings or via button in right bottom corner</string>
     <string name="main">Main</string>
+    <string name="info">Details</string>
+    <string name="templates">Templates</string>
+    <string name="add_template">Add template</string>
+    <string name="every_day">Every day</string>
+    <string name="every_week">Every week</string>
+    <string name="every_month">Every month</string>
+    <string name="period">Period</string>
 
     <string-array name="currencies">
         <item>@string/rub</item>
@@ -57,6 +64,11 @@
     <string-array name="transaction_types">
         <item>@string/expense</item>
         <item>@string/income</item>
+    </string-array>
+    <string-array name="template_periods">
+        <item>@string/every_day</item>
+        <item>@string/every_week</item>
+        <item>@string/every_month</item>
     </string-array>
     <string-array name="transaction_expense_categories">
         <item>@string/auto</item>

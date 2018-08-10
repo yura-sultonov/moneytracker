@@ -1,0 +1,35 @@
+import com.allerria.moneytracker.entity.Currency;
+import com.allerria.moneytracker.entity.TemplateType;
+import com.allerria.moneytracker.entity.TransactionType;
+import java.util.Calendar;
+
+CREATE TABLE IF NOT EXISTS templates (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    type TEXT AS TemplateType NOT NULL,
+    enabled INTEGER AS Boolean NOT NULL,
+    transactionType TEXT AS TransactionType NOT NULL,
+    transactionCategory TEXT NOT NULL DEFAULT '',
+    transactionCurrency TEXT AS Currency NOT NULL,
+    transactionAmount REAL NOT NULL,
+    transactionWalletId INTEGER NOT NULL,
+    lastRunDate INTEGER AS Calendar NOT NULL,
+    FOREIGN KEY(transactionWalletId) REFERENCES wallets(id)
+);
+
+insertTemplate:
+INSERT INTO templates(type, enabled, transactionType, transactionCategory, transactionCurrency, transactionAmount, transactionWalletId, lastRunDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+selectAll:
+SELECT * FROM templates ORDER BY id DESC;
+
+updateEnabled:
+UPDATE templates SET enabled = ? WHERE id = ?;
+
+updateLastRun:
+UPDATE templates SET lastRunDate = ? WHERE id = ?;
+
+deleteAllByWalletId:
+DELETE FROM templates WHERE transactionWalletId = ?;
+
+deleteAll:
+DELETE FROM templates;

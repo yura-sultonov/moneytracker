@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Transactions
-import com.allerria.moneytracker.entity.TransactionCategory
 import com.allerria.moneytracker.entity.TransactionType
 import com.allerria.moneytracker.extensions.formatMoney
 import com.allerria.moneytracker.extensions.inflate
@@ -27,21 +26,10 @@ class TransactionsAdapterDelegate : AdapterDelegate<MutableList<Transactions>>()
     private inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(transaction: Transactions) {
             with(itemView) {
-                category_text_view.text = when (transaction.category) {
-                    TransactionCategory.AUTO.toString() -> context.getString(R.string.auto)
-                    TransactionCategory.OTHER.toString() -> context.getString(R.string.other)
-                    TransactionCategory.GIFT.toString() -> context.getString(R.string.gift)
-                    TransactionCategory.SALARY.toString() -> context.getString(R.string.salary)
-                    TransactionCategory.HEALTH.toString() -> context.getString(R.string.health)
-                    TransactionCategory.ENTERTAINMENT.toString() -> context.getString(R.string.entertainment)
-                    TransactionCategory.CAFE_AND_RESTAURANT.toString() -> context.getString(R.string.cafe_and_restaurants)
-                    TransactionCategory.HOUSE.toString() -> context.getString(R.string.house)
-                    TransactionCategory.CLOTHING.toString() -> context.getString(R.string.clothing)
-                    else -> ""
-                }
+                category_text_view.text = transaction.category
                 currency_text_view.text = transaction.currency.name
                 value_text_view.text = transaction.amount.formatMoney()
-                name_text_view.text = transaction.details
+                //name_text_view.text = transaction.details
                 if (name_text_view.text.isNotEmpty()) {
                     name_text_view.text = "${name_text_view.text} "
                 }

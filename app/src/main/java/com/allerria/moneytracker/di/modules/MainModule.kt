@@ -4,6 +4,8 @@ import com.allerria.moneytracker.ui.main.about.AboutFragment
 import com.allerria.moneytracker.ui.main.balance.BalanceFragment
 import com.allerria.moneytracker.ui.main.info.InfoFragment
 import com.allerria.moneytracker.ui.main.settings.SettingsFragment
+import com.allerria.moneytracker.ui.main.template.AddTemplateFragment
+import com.allerria.moneytracker.ui.main.template.TemplatesFragment
 import com.allerria.moneytracker.ui.main.transaction.AddTransactionFragment
 import com.allerria.moneytracker.ui.main.wallet.AddWalletFragment
 import dagger.Module
@@ -29,4 +31,10 @@ abstract class MainModule {
 
     @ContributesAndroidInjector(modules = [InfoModule::class])
     abstract fun bindInfoFragment(): InfoFragment
+
+    @ContributesAndroidInjector(modules = [TemplatesModule::class])
+    abstract fun bindTemplatesFragment(): TemplatesFragment
+
+    @ContributesAndroidInjector(modules = [AddTemplateModule::class])
+    abstract fun bindAddTemplateFragment(): AddTemplateFragment
 }
