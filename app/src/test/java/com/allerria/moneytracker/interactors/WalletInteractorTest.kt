@@ -30,7 +30,7 @@ class WalletInteractorTest {
     private lateinit var walletRepository: WalletRepository
 
     @Before
-    fun init(){
+    fun init() {
         converterInteractor = mock(ConverterInteractor::class.java)
         transactionsRepository = mock(TransactionsRepository::class.java)
         walletRepository = mock(WalletRepository::class.java)
@@ -46,7 +46,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testGetWallet(){
+    fun testGetWallet() {
         doReturn(Wallets.Impl(1, "", WalletType.CASH, Currency.RUB, 1000.0)).`when`(walletRepository).getWalletById(0)
         walletInteractor.getWallet(0)
         verify(walletRepository).getWalletById(0)
@@ -54,7 +54,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testGetBalance(){
+    fun testGetBalance() {
         doReturn(2.0).`when`(walletRepository).getBalance(0)
         doReturn(ArrayList<Money>()).`when`(converterInteractor).convert(Money(Currency.USD, 2.0))
         walletInteractor.getBalance(0)
@@ -65,7 +65,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testGetTransactions(){
+    fun testGetTransactions() {
         doReturn(ArrayList<Transactions>()).`when`(transactionsRepository).getTransactions()
         walletInteractor.getTransactions()
         verify(transactionsRepository).getTransactions()
@@ -73,7 +73,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testGetTransactionById(){
+    fun testGetTransactionById() {
         doReturn(ArrayList<Transactions>()).`when`(transactionsRepository).getTransactionsWalletId(0)
         walletInteractor.getTransactions(0)
         verify(transactionsRepository).getTransactionsWalletId(0)
@@ -81,7 +81,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testSetBalance(){
+    fun testSetBalance() {
         doNothing().`when`(walletRepository).setBalance(1, 10.0)
         walletInteractor.setBalance(1, 10.0)
         verify(walletRepository).setBalance(1, 10.0)
@@ -89,7 +89,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testUpdateCurrenciesRate(){
+    fun testUpdateCurrenciesRate() {
         doNothing().`when`(converterInteractor).updateCurrencyRateCache()
         walletInteractor.updateCurrenciesRate()
         verify(converterInteractor).updateCurrencyRateCache()
@@ -97,7 +97,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testExecuteTransaction(){
+    fun testExecuteTransaction() {
         doReturn(0.0).`when`(walletRepository).getBalance(testTransaction.walletId)
         doNothing().`when`(transactionsRepository).addTransaction(testTransaction)
         if (testTransaction.type == TransactionType.EXPENSE)
@@ -116,7 +116,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testAddWallet(){
+    fun testAddWallet() {
         doNothing().`when`(walletRepository).addWallet(testWallet)
         walletInteractor.addWallet(testWallet)
         verify(walletRepository).addWallet(testWallet)
@@ -124,7 +124,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testWipeData(){
+    fun testWipeData() {
         doNothing().`when`(walletRepository).clear()
         walletInteractor.wipeData()
         verify(walletRepository).clear()
@@ -132,7 +132,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testGetIncomeCategories(){
+    fun testGetIncomeCategories() {
         doReturn(ArrayList<String>()).`when`(transactionsRepository).getIncomeCategories()
         walletInteractor.getIncomeCategories()
         verify(transactionsRepository).getIncomeCategories()
@@ -140,7 +140,7 @@ class WalletInteractorTest {
     }
 
     @Test
-    fun testGetExpenseCategories(){
+    fun testGetExpenseCategories() {
         doReturn(ArrayList<String>()).`when`(transactionsRepository).getExpenseCategories()
         walletInteractor.getExpenseCategories()
         verify(transactionsRepository).getExpenseCategories()

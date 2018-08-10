@@ -1,8 +1,6 @@
 package com.allerria.moneytracker.model.data.repository
 
-import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager.getDefaultSharedPreferences
 import com.allerria.moneytracker.entity.Currency
 import javax.inject.Inject
 

@@ -14,7 +14,7 @@ class AddTemplatePresenter @Inject constructor(private val walletInteractor: Wal
         viewState.setWallets(walletInteractor.getWallets())
     }
 
-    fun addTemplate(template: Template){
+    fun addTemplate(template: Template) {
         templateRepository.insertTemplate(template)
         router.exit()
     }

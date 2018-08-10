@@ -41,9 +41,15 @@ class TemplatesAdapterDelegate : AdapterDelegate<MutableList<Templates>>() {
                 }
                 template_switch.isChecked = template.enabled
                 date_text_view.text = when (template.type) {
-                    TemplateType.EVERY_BEGIN_DAY -> {context.getString(R.string.every_day)}
-                    TemplateType.EVERY_BEGIN_WEEK -> {context.getString(R.string.every_week)}
-                    TemplateType.EVERY_BEGIN_MONTH -> {context.getString(R.string.every_month)}
+                    TemplateType.EVERY_BEGIN_DAY -> {
+                        context.getString(R.string.every_day)
+                    }
+                    TemplateType.EVERY_BEGIN_WEEK -> {
+                        context.getString(R.string.every_week)
+                    }
+                    TemplateType.EVERY_BEGIN_MONTH -> {
+                        context.getString(R.string.every_month)
+                    }
                 }
             }
         }

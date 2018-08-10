@@ -10,12 +10,14 @@ import android.widget.Toast
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.Wallets
-import com.allerria.moneytracker.entity.*
+import com.allerria.moneytracker.entity.Template
+import com.allerria.moneytracker.entity.TemplateType
+import com.allerria.moneytracker.entity.TransactionType
+import com.allerria.moneytracker.entity.WalletType
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_add_template.*
-import kotlinx.android.synthetic.main.fragment_add_transaction.*
 import java.util.*
 import javax.inject.Inject
 
@@ -42,6 +44,7 @@ class AddTemplateFragment : BaseFragment(), AddTemplateView {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 presenter.typeTransactionChange(template_transaction_type_spinner.selectedItemPosition)
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
         add_template_transaction_button.setOnClickListener {
@@ -57,9 +60,15 @@ class AddTemplateFragment : BaseFragment(), AddTemplateView {
 
     private fun createTemplate(): Template {
         val periodType: TemplateType = when (template_transaction_type_spinner.selectedItemPosition) {
-            0 -> { TemplateType.EVERY_BEGIN_DAY }
-            1 -> { TemplateType.EVERY_BEGIN_WEEK }
-            else -> {TemplateType.EVERY_BEGIN_MONTH}
+            0 -> {
+                TemplateType.EVERY_BEGIN_DAY
+            }
+            1 -> {
+                TemplateType.EVERY_BEGIN_WEEK
+            }
+            else -> {
+                TemplateType.EVERY_BEGIN_MONTH
+            }
         }
         val transactionType: TransactionType = when (template_transaction_type_spinner.selectedItem.toString()) {
             getString(R.string.expense) -> TransactionType.EXPENSE

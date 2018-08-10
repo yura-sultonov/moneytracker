@@ -1,18 +1,13 @@
 package com.allerria.moneytracker.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import com.allerria.moneytracker.R
-import com.allerria.moneytracker.ui.common.BaseActivity
 import com.allerria.moneytracker.ui.common.BaseActivityWithoutFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.android.SupportAppNavigator
 
-class LoadingActivity: BaseActivityWithoutFragment(), LoadingView {
+class LoadingActivity : BaseActivityWithoutFragment(), LoadingView {
 
     override val layoutRes = R.layout.activity_loading
 
@@ -24,6 +19,7 @@ class LoadingActivity: BaseActivityWithoutFragment(), LoadingView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //presenter.syncHistory()
         val welcomeThread = object : Thread() {
 
             override fun run() {
@@ -40,7 +36,7 @@ class LoadingActivity: BaseActivityWithoutFragment(), LoadingView {
         welcomeThread.start()
     }
 
-    private fun navigateToMainActivity() {
+    override fun navigateToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

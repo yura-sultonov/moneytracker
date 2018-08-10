@@ -10,7 +10,10 @@ import android.widget.Toast
 import com.allerria.moneytracker.R
 import com.allerria.moneytracker.Screens
 import com.allerria.moneytracker.Wallets
-import com.allerria.moneytracker.entity.*
+import com.allerria.moneytracker.entity.Money
+import com.allerria.moneytracker.entity.Transaction
+import com.allerria.moneytracker.entity.TransactionType
+import com.allerria.moneytracker.entity.WalletType
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter

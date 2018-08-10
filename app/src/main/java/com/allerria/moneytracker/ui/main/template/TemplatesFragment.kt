@@ -10,12 +10,8 @@ import com.allerria.moneytracker.Templates
 import com.allerria.moneytracker.ui.common.BaseFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import kotlinx.android.synthetic.main.fragment_balance.*
 import kotlinx.android.synthetic.main.fragment_templates.*
-import kotlinx.android.synthetic.main.fragment_wallet.*
 import ru.terrakok.cicerone.Router
-import com.allerria.moneytracker.ui.main.template.TemplatesAdapter
-import com.allerria.moneytracker.ui.main.wallet.TransactionsAdapter
 import javax.inject.Inject
 
 class TemplatesFragment : BaseFragment(), TemplatesView {
@@ -35,7 +31,7 @@ class TemplatesFragment : BaseFragment(), TemplatesView {
 
     @ProvidePresenter
     fun providePresenter(): TemplatesPresenter {
-        return  presenter
+        return presenter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

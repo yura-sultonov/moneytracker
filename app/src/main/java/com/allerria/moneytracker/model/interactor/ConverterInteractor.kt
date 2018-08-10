@@ -37,5 +37,5 @@ open class ConverterInteractor @Inject constructor(private val currencyRateRepos
                 })
     }
 
-    private fun getCurrencyRate(currency: Currency): CurrencyRate = currencyRateRepository.getCurrenciesRateFromCache().find { it.currency == currency }!!
+    fun getCurrencyRate(currency: Currency): CurrencyRate = currencyRateRepository.getCurrenciesRateFromCache().find { it.currency == currency }!!
 }

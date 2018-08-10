@@ -13,15 +13,15 @@ class TemplateRepository @Inject constructor(private val db: AppDbHelper) {
         db.wrapper.templateQueries.updateEnabled(enabled, id)
     }
 
-    fun updateLastRun(id: Long, date: Calendar){
+    fun updateLastRun(id: Long, date: Calendar) {
         db.wrapper.templateQueries.updateLastRun(date, id)
     }
 
-    fun deleteByWalletId(id: Long){
+    fun deleteByWalletId(id: Long) {
         db.wrapper.templateQueries.deleteAllByWalletId(id)
     }
 
-    fun deleteAll(){
+    fun deleteAll() {
         db.wrapper.templateQueries.deleteAll()
     }
 

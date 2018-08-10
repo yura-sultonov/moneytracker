@@ -5,7 +5,6 @@ import com.allerria.moneytracker.Wallets
 import com.allerria.moneytracker.entity.*
 import com.allerria.moneytracker.model.data.repository.TransactionsRepository
 import com.allerria.moneytracker.model.data.repository.WalletRepository
-import timber.log.Timber
 import javax.inject.Inject
 
 

@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/nav_background">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/nav_background"
+    tools:context=".ui.main.LoadingActivity"
+    android:theme="@style/AppTheme">
 
     <TextView
         android:id="@+id/loading_app_name"

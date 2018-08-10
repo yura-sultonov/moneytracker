@@ -1,14 +1,10 @@
 package com.allerria.moneytracker.ui.main.transaction
 
-import android.widget.ArrayAdapter
-import com.allerria.moneytracker.R
 import com.allerria.moneytracker.entity.Transaction
 import com.allerria.moneytracker.model.interactor.WalletInteractor
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import kotlinx.android.synthetic.main.fragment_add_transaction.*
 import ru.terrakok.cicerone.Router
-import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
@@ -19,7 +15,6 @@ class AddTransactionPresenter @Inject constructor(private val walletInteractor: 
     }
 
     fun addTransaction(transaction: Transaction) {
-        Timber.d(transaction.toString())
         walletInteractor.executeTransaction(transaction)
         router.exit()
     }
