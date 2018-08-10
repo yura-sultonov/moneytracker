@@ -7,7 +7,7 @@ import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
 import java.util.*
 import javax.inject.Inject
 
-class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
+open class TransactionsRepository @Inject constructor(private val db: AppDbHelper) {
 
     fun getTransactions() = db.wrapper.transactionQueries.selectAll().executeAsList()
 

@@ -4,7 +4,7 @@ import com.allerria.moneytracker.entity.Wallet
 import com.allerria.moneytracker.model.data.datasource.local.AppDbHelper
 import javax.inject.Inject
 
-class WalletRepository @Inject constructor(private val db: AppDbHelper) {
+open class WalletRepository @Inject constructor(private val db: AppDbHelper) {
 
     fun getBalance(id: Long) = db.wrapper.walletQueries.selectWalletById(id).executeAsOne().balance
 

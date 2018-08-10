@@ -21,7 +21,7 @@ class TransactionRepositoryTests {
     private lateinit var appDbHelper: AppDbHelper
 
     private val testWallet = Wallet(1, "Test", WalletType.CASH, 123.0, Currency.RUB)
-    private var testTransaction = Transaction(-1, TransactionType.EXPENSE, "AUTO", Currency.RUB, 123.0, -1, "blahblah", GregorianCalendar().time)
+    private var testTransaction = Transaction(-1, TransactionType.EXPENSE, "AUTO", Currency.RUB, 123.0, -1, GregorianCalendar().time)
 
     @Before
     fun load() {
@@ -36,7 +36,7 @@ class TransactionRepositoryTests {
         walletRepository.clear()
         walletRepository.addWallet(testWallet)
         Assert.assertEquals(walletRepository.getWallets().size, 1)
-        transactionsRepository.addTransaction(Transaction(testTransaction.id, testTransaction.type, testTransaction.category, testTransaction.currency, testTransaction.amount, walletRepository.getWallets().first().id, testTransaction.details, testTransaction.date))
+        transactionsRepository.addTransaction(Transaction(testTransaction.id, testTransaction.type, testTransaction.category, testTransaction.currency, testTransaction.amount, walletRepository.getWallets().first().id, testTransaction.date))
         Assert.assertEquals(transactionsRepository.getTransactions().size, 1)
     }
 
@@ -45,7 +45,7 @@ class TransactionRepositoryTests {
         walletRepository.clear()
         walletRepository.addWallet(testWallet)
         Assert.assertEquals(walletRepository.getWallets().size, 1)
-        transactionsRepository.addTransaction(Transaction(testTransaction.id, testTransaction.type, testTransaction.category, testTransaction.currency, testTransaction.amount, walletRepository.getWallets().first().id, testTransaction.details, testTransaction.date))
+        transactionsRepository.addTransaction(Transaction(testTransaction.id, testTransaction.type, testTransaction.category, testTransaction.currency, testTransaction.amount, walletRepository.getWallets().first().id, testTransaction.date))
         transactionsRepository.deleteAllByWalletId(walletRepository.getWallets().first().id)
         Assert.assertEquals(transactionsRepository.getTransactions().size, 0)
     }
@@ -55,7 +55,7 @@ class TransactionRepositoryTests {
         walletRepository.clear()
         walletRepository.addWallet(testWallet)
         Assert.assertEquals(walletRepository.getWallets().size, 1)
-        transactionsRepository.addTransaction(Transaction(testTransaction.id, testTransaction.type, testTransaction.category, testTransaction.currency, testTransaction.amount, walletRepository.getWallets().first().id, testTransaction.details, testTransaction.date))
+        transactionsRepository.addTransaction(Transaction(testTransaction.id, testTransaction.type, testTransaction.category, testTransaction.currency, testTransaction.amount, walletRepository.getWallets().first().id, testTransaction.date))
         Assert.assertEquals(transactionsRepository.getTransactions().firstOrNull()?.type, testTransaction.type)
         Assert.assertEquals(transactionsRepository.getTransactions().firstOrNull()?.category, testTransaction.category)
         Assert.assertEquals(transactionsRepository.getTransactions().firstOrNull()?.currency, testTransaction.currency)
