@@ -2,7 +2,6 @@ package com.allerria.moneytracker.ui.main
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -39,6 +38,7 @@ import javax.inject.Inject
 class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSelectedListener {
 
     override val layoutRes = R.layout.activity_main
+    private var twoPane = false
 
     @Inject
     lateinit var app: Context
@@ -80,39 +80,52 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
                 router.navigateTo(Screens.SETTINGS_SCREEN)
             }
         }
-        drawer_layout.closeDrawer(GravityCompat.START)
+        if (!twoPane) {
+            drawer_layout?.closeDrawer(GravityCompat.START)
+        }
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == android.R.id.home && twoPane)
+            router.exit()
+        return super.onOptionsItemSelected(item)
     }
 
     override fun initView() {
         setSupportActionBar(toolbar)
         nav_view.setNavigationItemSelectedListener(this)
-        toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
-        toolbar.setNavigationOnClickListener {
-            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-                drawer_layout.closeDrawer(GravityCompat.START)
-            } else {
-                val tag = (supportFragmentManager.fragments.first() as BaseFragment).TAG
-                if (!isRootMenu(tag)) {
-                    router.exit()
+        if (drawer_layout != null) {
+            twoPane = false
+            toggle = ActionBarDrawerToggle(
+                    this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            drawer_layout?.addDrawerListener(toggle)
+            toolbar.setNavigationOnClickListener {
+                if (drawer_layout?.isDrawerOpen(GravityCompat.START)!!) {
+                    drawer_layout?.closeDrawer(GravityCompat.START)
                 } else {
-                    drawer_layout.openDrawer(GravityCompat.START)
+                    val tag = (supportFragmentManager.fragments.first() as BaseFragment).TAG
+                    if (!isRootMenu(tag)) {
+                        router.exit()
+                    } else {
+                        drawer_layout?.openDrawer(GravityCompat.START)
+                    }
                 }
             }
+            // drawer animation
+            drawer_layout?.drawerElevation = 0F
+            drawer_layout?.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
+                override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                    super.onDrawerSlide(drawerView, slideOffset)
+                    val moveFactor = nav_view.width * slideOffset
+                    main_container.translationX = moveFactor
+                    main_container.scaleX = 1 - slideOffset / 4
+                    main_container.scaleY = 1 - slideOffset / 4
+                }
+            })
+        } else {
+            twoPane = true
         }
-        // drawer animation
-        drawer_layout.drawerElevation = 0F
-        drawer_layout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
-            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                super.onDrawerSlide(drawerView, slideOffset)
-                val moveFactor = nav_view.width * slideOffset
-                main_container.translationX = moveFactor
-                main_container.scaleX = 1 - slideOffset / 4
-                main_container.scaleY = 1 - slideOffset / 4
-            }
-        })
         supportFragmentManager.addOnBackStackChangedListener {
             onChangeFragment((supportFragmentManager.fragments.first() as BaseFragment).TAG)
         }
@@ -125,7 +138,7 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
     }
 
     private fun isRootMenu(tag: String): Boolean {
-        return  tag == Screens.INFO_SCREEN || tag == Screens.BALANCE_SCREEN ||
+        return tag == Screens.INFO_SCREEN || tag == Screens.BALANCE_SCREEN ||
                 tag == Screens.SETTINGS_SCREEN || tag == Screens.ABOUT_SCREEN ||
                 tag == Screens.TEMPLATES_SCREEN
     }
@@ -161,11 +174,15 @@ class MainActivity : BaseActivity(), MainView, NavigationView.OnNavigationItemSe
         }
         if (isRoot) {
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
-            toggle.syncState()
-            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            if (!twoPane) {
+                toggle.syncState()
+                drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            }
         } else {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            if (!twoPane) {
+                drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
         }
 
         val titleInt: Int = when (tag) {
